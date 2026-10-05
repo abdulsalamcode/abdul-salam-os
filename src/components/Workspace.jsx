@@ -1,10 +1,26 @@
 import { useState } from "react";
 import WorkspaceCard from "./WorkspaceCard";
 import ResumeWindow from "./ResumeWindow";
+import ProjectsWindow from "./ProjectsWindow";
+import StackWindow from "./StackWindow";
+import AboutWindow from "./AboutWindow";
+import ContactWindow from "./ContactWindow";
 
 function Workspace() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [isResumeMinimized, setIsResumeMinimized] = useState(false);
+
+  const [isProjectsOpen, setIsProjectsOpen] = useState(false);
+  const [isProjectsMinimized, setIsProjectsMinimized] = useState(false);
+
+  const [isStackOpen, setIsStackOpen] = useState(false);
+  const [isStackMinimized, setIsStackMinimized] = useState(false);
+
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isAboutMinimized, setIsAboutMinimized] = useState(false);
+
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isContactMinimized, setIsContactMinimized] = useState(false);
 
   return (
     <>
@@ -22,18 +38,27 @@ function Workspace() {
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
+          {/* Work */}
           <WorkspaceCard
             title="Work"
             description="Projects & case studies"
-            href="#work"
+            onClick={() => {
+              setIsProjectsOpen(true);
+              setIsProjectsMinimized(false);
+            }}
           />
 
+          {/* Stack */}
           <WorkspaceCard
             title="Stack"
             description="Technologies & tools"
-            href="#stack"
+            onClick={() => {
+              setIsStackOpen(true);
+              setIsStackMinimized(false);
+            }}
           />
 
+          {/* Resume */}
           <WorkspaceCard
             title="Resume"
             description="View my CV"
@@ -43,27 +68,37 @@ function Workspace() {
             }}
           />
 
+          {/* About */}
           <WorkspaceCard
             title="About"
             description="My journey"
-            href="#about"
+            onClick={() => {
+              setIsAboutOpen(true);
+              setIsAboutMinimized(false);
+            }}
           />
 
+          {/* Terminal */}
           <WorkspaceCard
             title="Terminal"
             description="Explore with commands"
           />
 
+          {/* Contact */}
           <WorkspaceCard
             title="Contact"
             description="Let's connect"
-            href="#contact"
+            onClick={() => {
+              setIsContactOpen(true);
+              setIsContactMinimized(false);
+            }}
           />
 
         </div>
 
       </section>
 
+      {/* Resume Window */}
       {isResumeOpen && !isResumeMinimized && (
         <ResumeWindow
           onClose={() => {
@@ -75,6 +110,59 @@ function Workspace() {
           }}
         />
       )}
+
+      {/* Projects Window */}
+      {isProjectsOpen && !isProjectsMinimized && (
+        <ProjectsWindow
+          onClose={() => {
+            setIsProjectsOpen(false);
+            setIsProjectsMinimized(false);
+          }}
+          onMinimize={() => {
+            setIsProjectsMinimized(true);
+          }}
+        />
+      )}
+
+      {/* Stack Window */}
+      {isStackOpen && !isStackMinimized && (
+        <StackWindow
+          onClose={() => {
+            setIsStackOpen(false);
+            setIsStackMinimized(false);
+          }}
+          onMinimize={() => {
+            setIsStackMinimized(true);
+          }}
+        />
+      )}
+
+      {/* About Window */}
+      {isAboutOpen && !isAboutMinimized && (
+        <AboutWindow
+          onClose={() => {
+            setIsAboutOpen(false);
+            setIsAboutMinimized(false);
+          }}
+          onMinimize={() => {
+            setIsAboutMinimized(true);
+          }}
+        />
+      )}
+
+      {/* Contact Window */}
+      {isContactOpen && !isContactMinimized && (
+        <ContactWindow
+          onClose={() => {
+            setIsContactOpen(false);
+            setIsContactMinimized(false);
+          }}
+          onMinimize={() => {
+            setIsContactMinimized(true);
+          }}
+        />
+      )}
+
     </>
   );
 }

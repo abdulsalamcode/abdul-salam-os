@@ -5,6 +5,7 @@ import ProjectsWindow from "./ProjectsWindow";
 import StackWindow from "./StackWindow";
 import AboutWindow from "./AboutWindow";
 import ContactWindow from "./ContactWindow";
+import TerminalWindow from "./TerminalWindow";
 
 function Workspace() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -21,6 +22,9 @@ function Workspace() {
 
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isContactMinimized, setIsContactMinimized] = useState(false);
+
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+  const [isTerminalMinimized, setIsTerminalMinimized] = useState(false);
 
   return (
     <>
@@ -82,6 +86,10 @@ function Workspace() {
           <WorkspaceCard
             title="Terminal"
             description="Explore with commands"
+            onClick={() => {
+              setIsTerminalOpen(true);
+              setIsTerminalMinimized(false);
+            }}
           />
 
           {/* Contact */}
@@ -163,6 +171,18 @@ function Workspace() {
         />
       )}
 
+      {/* Terminal Window */}
+      {isTerminalOpen && !isTerminalMinimized && (
+        <TerminalWindow
+          onClose={() => {
+            setIsTerminalOpen(false);
+            setIsTerminalMinimized(false);
+          }}
+          onMinimize={() => {
+            setIsTerminalMinimized(true);
+          }}
+        />
+      )}
     </>
   );
 }

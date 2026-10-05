@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Window from "./Window";
 
 function TerminalWindow({
@@ -23,6 +23,8 @@ function TerminalWindow({
 
   const [historyIndex, setHistoryIndex] = useState(-1);
 
+  const terminalEndRef = useRef(null);
+
   const commands = [
     "help",
     "about",
@@ -39,6 +41,12 @@ function TerminalWindow({
     commands.find((command) =>
       command.startsWith(input.trim().toLowerCase())
     );
+
+  useEffect(() => {
+    terminalEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [history]);
 
   const handleCommand = (event) => {
     event.preventDefault();
@@ -89,7 +97,8 @@ function TerminalWindow({
         break;
 
       default:
-        response = `Command not found: ${command}`;
+        response =
+          `Command not found: ${command}. Type "help" to see available commands.`;
         break;
     }
 
@@ -132,6 +141,14 @@ function TerminalWindow({
     if (command === "contact") {
       onOpenWindow("contact");
     }
+
+    if (command === "github") {
+      window.open(
+        "https://github.com/abdulsalamcode",
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }
   };
 
   const handleKeyDown = (event) => {
@@ -157,6 +174,8 @@ function TerminalWindow({
 
       setHistoryIndex(newIndex);
       setInput(commandHistory[newIndex]);
+
+      return;
     }
 
     if (event.key === "ArrowDown") {
@@ -185,71 +204,92 @@ function TerminalWindow({
       onClose={onClose}
       onMinimize={onMinimize}
     >
-      <div className="rounded-lg border border-slate-800 bg-slate-950 p-5 font-mono text-sm">
+      <div className="flex h-[60vh] min-h-[360px] flex-col overflow-hidden rounded-lg border border-slate-800 bg-slate-950 font-mono text-sm">
 
-        <div className="text-slate-500">
-          Abdul Salam OS Terminal
+        {/* Terminal Header */}
+        <div className="border-b border-slate-800 px-4 py-3">
+          <p className="text-xs uppercase tracking-wider text-slate-600">
+            Abdul Salam OS Terminal
+          </p>
         </div>
 
-        <div className="mt-6 space-y-3">
+        {/* Terminal Output */}
+        <div className="min-h-0 flex-1 overflow-y-auto px-5 py-4">
 
-          {history.map((item, index) => (
-            <div key={index}>
+          <div className="space-y-3">
 
-              {item.type === "system" && (
-                <p className="text-slate-400">
-                  {item.text}
-                </p>
-              )}
+            {history.map((item, index) => (
+              <div key={index}>
 
-              {item.type === "command" && (
-                <p className="text-emerald-400">
-                  abdul@portfolio:~$ {item.text}
-                </p>
-              )}
+                {item.type === "system" && (
+                  <p className="text-slate-500">
+                    {item.text}
+                  </p>
+                )}
 
-              {item.type === "response" && (
-                <p className="text-slate-300">
-                  {item.text}
-                </p>
-              )}
+                {item.type === "command" && (
+                  <p className="break-words text-emerald-400">
+                    abdul@portfolio:~$ {item.text}
+                  </p>
+                )}
 
-            </div>
-          ))}
+                {item.type === "response" && (
+                  <p className="break-words text-slate-300">
+                    {item.text}
+                  </p>
+                )}
+
+              </div>
+            ))}
+
+            <div ref={terminalEndRef} />
+
+          </div>
 
         </div>
 
-        {/* Command Suggestions */}
+        {/* Suggestion */}
         {suggestion &&
           suggestion !== input.trim().toLowerCase() && (
-            <div className="mt-4 text-xs text-slate-600">
-              Press Tab to complete:{" "}
+            <div className="border-t border-slate-900 px-5 py-2 text-xs text-slate-600">
+              Press{" "}
               <span className="text-slate-400">
+                Tab
+              </span>{" "}
+              to complete:{" "}
+              <span className="text-cyan-400">
                 {suggestion}
               </span>
             </div>
           )}
 
+        {/* Command Input */}
         <form
           onSubmit={handleCommand}
-          className="mt-6 flex items-center gap-2"
+          className="border-t border-slate-800 px-5 py-4"
         >
-          <span className="shrink-0 text-emerald-400">
-            abdul@portfolio:~$
-          </span>
+          <div className="flex items-center gap-2">
 
-          <input
-            type="text"
-            value={input}
-            onChange={(event) => {
-              setInput(event.target.value);
-              setHistoryIndex(-1);
-            }}
-            onKeyDown={handleKeyDown}
-            autoFocus
-            placeholder="type a command..."
-            className="min-w-0 flex-1 bg-transparent text-slate-200 outline-none placeholder:text-slate-700"
-          />
+            <span className="shrink-0 text-emerald-400">
+              abdul@portfolio:~$
+            </span>
+
+            <input
+              type="text"
+              value={input}
+              onChange={(event) => {
+                setInput(event.target.value);
+                setHistoryIndex(-1);
+              }}
+              onKeyDown={handleKeyDown}
+              autoFocus
+              spellCheck="false"
+              autoComplete="off"
+              placeholder="type a command..."
+              className="min-w-0 flex-1 bg-transparent text-slate-200 outline-none placeholder:text-slate-700"
+            />
+
+          </div>
         </form>
 
       </div>

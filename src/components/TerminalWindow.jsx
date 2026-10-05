@@ -23,6 +23,23 @@ function TerminalWindow({
 
   const [historyIndex, setHistoryIndex] = useState(-1);
 
+  const commands = [
+    "help",
+    "about",
+    "skills",
+    "projects",
+    "resume",
+    "contact",
+    "github",
+    "clear",
+  ];
+
+  const suggestion =
+    input.trim() &&
+    commands.find((command) =>
+      command.startsWith(input.trim().toLowerCase())
+    );
+
   const handleCommand = (event) => {
     event.preventDefault();
 
@@ -118,6 +135,14 @@ function TerminalWindow({
   };
 
   const handleKeyDown = (event) => {
+    if (event.key === "Tab" && suggestion) {
+      event.preventDefault();
+
+      setInput(suggestion);
+
+      return;
+    }
+
     if (event.key === "ArrowUp") {
       event.preventDefault();
 
@@ -193,6 +218,17 @@ function TerminalWindow({
           ))}
 
         </div>
+
+        {/* Command Suggestions */}
+        {suggestion &&
+          suggestion !== input.trim().toLowerCase() && (
+            <div className="mt-4 text-xs text-slate-600">
+              Press Tab to complete:{" "}
+              <span className="text-slate-400">
+                {suggestion}
+              </span>
+            </div>
+          )}
 
         <form
           onSubmit={handleCommand}

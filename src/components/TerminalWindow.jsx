@@ -47,10 +47,17 @@ function TerminalWindow({
     cls: "clear",
   };
 
+  const allSuggestions = [
+    ...commands,
+    ...Object.keys(aliases),
+  ];
+
+  const trimmedInput = input.trim().toLowerCase();
+
   const suggestion =
-    input.trim() &&
-    commands.find((command) =>
-      command.startsWith(input.trim().toLowerCase())
+    trimmedInput &&
+    allSuggestions.find((item) =>
+      item.startsWith(trimmedInput)
     );
 
   useEffect(() => {
@@ -188,7 +195,11 @@ Type "help" or "?" to see available commands.`;
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === "Tab" && suggestion) {
+    if (
+      event.key === "Tab" &&
+      suggestion &&
+      suggestion !== trimmedInput
+    ) {
       event.preventDefault();
 
       setInput(suggestion);
@@ -284,7 +295,7 @@ Type "help" or "?" to see available commands.`;
 
         {/* Suggestion */}
         {suggestion &&
-          suggestion !== input.trim().toLowerCase() && (
+          suggestion !== trimmedInput && (
             <div className="border-t border-slate-900 px-5 py-2 text-xs text-slate-600">
               Press{" "}
               <span className="text-slate-400">

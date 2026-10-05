@@ -1,7 +1,11 @@
 import { useState } from "react";
 import Window from "./Window";
 
-function TerminalWindow({ onClose, onMinimize }) {
+function TerminalWindow({
+  onClose,
+  onMinimize,
+  onOpenWindow,
+}) {
   const [input, setInput] = useState("");
 
   const [history, setHistory] = useState([
@@ -38,6 +42,36 @@ function TerminalWindow({ onClose, onMinimize }) {
           "Available commands: help, about, skills, projects, contact, resume, github, clear";
         break;
 
+      case "about":
+        response = "Opening About window...";
+        break;
+
+      case "skills":
+        response = "Opening Stack window...";
+        break;
+
+      case "projects":
+        response = "Opening Projects window...";
+        break;
+
+      case "resume":
+        response = "Opening Resume window...";
+        break;
+
+      case "contact":
+        response = "Opening Contact window...";
+        break;
+
+      case "github":
+        response = "Opening GitHub...";
+
+        window.open(
+          "https://github.com/abdulsalamcode",
+          "_blank",
+          "noopener,noreferrer"
+        );
+        break;
+
       default:
         response = `Command not found: ${command}`;
         break;
@@ -56,6 +90,26 @@ function TerminalWindow({ onClose, onMinimize }) {
     ]);
 
     setInput("");
+
+    if (command === "about") {
+      onOpenWindow("about");
+    }
+
+    if (command === "skills") {
+      onOpenWindow("stack");
+    }
+
+    if (command === "projects") {
+      onOpenWindow("projects");
+    }
+
+    if (command === "resume") {
+      onOpenWindow("resume");
+    }
+
+    if (command === "contact") {
+      onOpenWindow("contact");
+    }
   };
 
   return (
@@ -71,6 +125,7 @@ function TerminalWindow({ onClose, onMinimize }) {
         </div>
 
         <div className="mt-6 space-y-3">
+
           {history.map((item, index) => (
             <div key={index}>
 
@@ -94,6 +149,7 @@ function TerminalWindow({ onClose, onMinimize }) {
 
             </div>
           ))}
+
         </div>
 
         <form

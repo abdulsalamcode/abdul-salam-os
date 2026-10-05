@@ -26,6 +26,33 @@ function Workspace() {
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [isTerminalMinimized, setIsTerminalMinimized] = useState(false);
 
+  const openWindowFromTerminal = (windowName) => {
+    if (windowName === "about") {
+      setIsAboutOpen(true);
+      setIsAboutMinimized(false);
+    }
+
+    if (windowName === "stack") {
+      setIsStackOpen(true);
+      setIsStackMinimized(false);
+    }
+
+    if (windowName === "projects") {
+      setIsProjectsOpen(true);
+      setIsProjectsMinimized(false);
+    }
+
+    if (windowName === "resume") {
+      setIsResumeOpen(true);
+      setIsResumeMinimized(false);
+    }
+
+    if (windowName === "contact") {
+      setIsContactOpen(true);
+      setIsContactMinimized(false);
+    }
+  };
+
   return (
     <>
       <section className="mx-auto max-w-7xl px-6 pb-24">
@@ -106,7 +133,7 @@ function Workspace() {
 
       </section>
 
-      {/* Resume Window */}
+      {/* Resume */}
       {isResumeOpen && !isResumeMinimized && (
         <ResumeWindow
           onClose={() => {
@@ -119,7 +146,7 @@ function Workspace() {
         />
       )}
 
-      {/* Projects Window */}
+      {/* Projects */}
       {isProjectsOpen && !isProjectsMinimized && (
         <ProjectsWindow
           onClose={() => {
@@ -132,7 +159,7 @@ function Workspace() {
         />
       )}
 
-      {/* Stack Window */}
+      {/* Stack */}
       {isStackOpen && !isStackMinimized && (
         <StackWindow
           onClose={() => {
@@ -145,7 +172,7 @@ function Workspace() {
         />
       )}
 
-      {/* About Window */}
+      {/* About */}
       {isAboutOpen && !isAboutMinimized && (
         <AboutWindow
           onClose={() => {
@@ -158,7 +185,7 @@ function Workspace() {
         />
       )}
 
-      {/* Contact Window */}
+      {/* Contact */}
       {isContactOpen && !isContactMinimized && (
         <ContactWindow
           onClose={() => {
@@ -171,7 +198,7 @@ function Workspace() {
         />
       )}
 
-      {/* Terminal Window */}
+      {/* Terminal */}
       {isTerminalOpen && !isTerminalMinimized && (
         <TerminalWindow
           onClose={() => {
@@ -181,8 +208,10 @@ function Workspace() {
           onMinimize={() => {
             setIsTerminalMinimized(true);
           }}
+          onOpenWindow={openWindowFromTerminal}
         />
       )}
+
     </>
   );
 }

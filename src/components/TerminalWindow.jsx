@@ -19,6 +19,10 @@ function TerminalWindow({
     },
   ]);
 
+  const [commandHistory, setCommandHistory] = useState([]);
+
+  const [historyIndex, setHistoryIndex] = useState(-1);
+
   const handleCommand = (event) => {
     event.preventDefault();
 
@@ -31,6 +35,7 @@ function TerminalWindow({
     if (command === "clear") {
       setHistory([]);
       setInput("");
+      setHistoryIndex(-1);
       return;
     }
 
@@ -64,18 +69,17 @@ function TerminalWindow({
 
       case "github":
         response = "Opening GitHub...";
-
-        window.open(
-          "https://github.com/abdulsalamcode",
-          "_blank",
-          "noopener,noreferrer"
-        );
         break;
 
       default:
         response = `Command not found: ${command}`;
         break;
     }
+
+    setCommandHistory((previousCommands) => [
+      ...previousCommands,
+      command,
+    ]);
 
     setHistory((previousHistory) => [
       ...previousHistory,
@@ -90,6 +94,7 @@ function TerminalWindow({
     ]);
 
     setInput("");
+    setHistoryIndex(-1);
 
     if (command === "about") {
       onOpenWindow("about");
@@ -109,6 +114,43 @@ function TerminalWindow({
 
     if (command === "contact") {
       onOpenWindow("contact");
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+
+      if (commandHistory.length === 0) {
+        return;
+      }
+
+      const newIndex =
+        historyIndex === -1
+          ? commandHistory.length - 1
+          : Math.max(historyIndex - 1, 0);
+
+      setHistoryIndex(newIndex);
+      setInput(commandHistory[newIndex]);
+    }
+
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+
+      if (historyIndex === -1) {
+        return;
+      }
+
+      const newIndex = historyIndex + 1;
+
+      if (newIndex >= commandHistory.length) {
+        setHistoryIndex(-1);
+        setInput("");
+        return;
+      }
+
+      setHistoryIndex(newIndex);
+      setInput(commandHistory[newIndex]);
     }
   };
 
@@ -163,7 +205,11 @@ function TerminalWindow({
           <input
             type="text"
             value={input}
-            onChange={(event) => setInput(event.target.value)}
+            onChange={(event) => {
+              setInput(event.target.value);
+              setHistoryIndex(-1);
+            }}
+            onKeyDown={handleKeyDown}
             autoFocus
             placeholder="type a command..."
             className="min-w-0 flex-1 bg-transparent text-slate-200 outline-none placeholder:text-slate-700"

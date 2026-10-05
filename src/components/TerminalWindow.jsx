@@ -15,7 +15,7 @@ function TerminalWindow({
     },
     {
       type: "system",
-      text: 'Type "help" to see available commands.',
+      text: 'Type "help" or "?" to see available commands.',
     },
   ]);
 
@@ -36,6 +36,17 @@ function TerminalWindow({
     "clear",
   ];
 
+  const aliases = {
+    "?": "help",
+    whoami: "about",
+    stack: "skills",
+    work: "projects",
+    cv: "resume",
+    mail: "contact",
+    gh: "github",
+    cls: "clear",
+  };
+
   const suggestion =
     input.trim() &&
     commands.find((command) =>
@@ -51,11 +62,14 @@ function TerminalWindow({
   const handleCommand = (event) => {
     event.preventDefault();
 
-    const command = input.trim().toLowerCase();
+    const enteredCommand = input.trim().toLowerCase();
 
-    if (!command) {
+    if (!enteredCommand) {
       return;
     }
+
+    const command =
+      aliases[enteredCommand] || enteredCommand;
 
     if (command === "clear") {
       setHistory([]);
@@ -69,7 +83,27 @@ function TerminalWindow({
     switch (command) {
       case "help":
         response =
-          "Available commands: help, about, skills, projects, contact, resume, github, clear";
+          `Available commands:
+
+help      Show available commands
+about     Open About window
+skills    Open Tech Stack window
+projects  Open Projects window
+resume    Open Resume
+contact   Open Contact window
+github    Open GitHub
+clear     Clear terminal
+
+Aliases:
+
+?         → help
+whoami    → about
+stack     → skills
+work      → projects
+cv        → resume
+mail      → contact
+gh        → github
+cls       → clear`;
         break;
 
       case "about":
@@ -98,20 +132,22 @@ function TerminalWindow({
 
       default:
         response =
-          `Command not found: ${command}. Type "help" to see available commands.`;
+          `Command not found: ${enteredCommand}
+
+Type "help" or "?" to see available commands.`;
         break;
     }
 
     setCommandHistory((previousCommands) => [
       ...previousCommands,
-      command,
+      enteredCommand,
     ]);
 
     setHistory((previousHistory) => [
       ...previousHistory,
       {
         type: "command",
-        text: command,
+        text: enteredCommand,
       },
       {
         type: "response",
@@ -215,7 +251,6 @@ function TerminalWindow({
 
         {/* Terminal Output */}
         <div className="min-h-0 flex-1 overflow-y-auto px-5 py-4">
-
           <div className="space-y-3">
 
             {history.map((item, index) => (
@@ -234,7 +269,7 @@ function TerminalWindow({
                 )}
 
                 {item.type === "response" && (
-                  <p className="break-words text-slate-300">
+                  <p className="whitespace-pre-line break-words text-slate-300">
                     {item.text}
                   </p>
                 )}
@@ -245,7 +280,6 @@ function TerminalWindow({
             <div ref={terminalEndRef} />
 
           </div>
-
         </div>
 
         {/* Suggestion */}

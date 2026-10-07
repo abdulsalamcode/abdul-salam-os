@@ -1,4 +1,5 @@
 import Window from "./Window";
+import projects from "../data/projects";
 
 function ProjectsWindow({ onClose, onMinimize }) {
   return (
@@ -8,7 +9,6 @@ function ProjectsWindow({ onClose, onMinimize }) {
       onMinimize={onMinimize}
     >
       <div>
-
         <p className="text-sm font-medium tracking-wider text-cyan-400">
           PROJECTS
         </p>
@@ -23,51 +23,67 @@ function ProjectsWindow({ onClose, onMinimize }) {
         </p>
 
         <div className="mt-8 space-y-4">
+          {projects.map((project) => (
+            <article
+              key={project.id}
+              className="rounded-xl border border-slate-800 bg-slate-950/50 p-5 transition hover:border-slate-700"
+            >
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p className="text-sm text-cyan-400">
+                    {project.category}
+                  </p>
 
-          <article className="rounded-lg border border-slate-800 bg-slate-950/50 p-5">
+                  <h3 className="mt-2 text-lg font-semibold text-slate-100">
+                    {project.title}
+                  </h3>
+                </div>
 
-            <p className="text-sm text-cyan-400">
-              Full-Stack Web Application
-            </p>
+                <span className="w-fit rounded-full border border-emerald-500/20 bg-emerald-500/5 px-2.5 py-1 text-xs text-emerald-400">
+                  {project.status}
+                </span>
+              </div>
 
-            <h3 className="mt-2 text-lg font-semibold">
-              Employee Management System
-            </h3>
+              <p className="mt-3 text-sm leading-6 text-slate-400">
+                {project.description}
+              </p>
 
-            <p className="mt-2 text-sm text-slate-400">
-              A web application for managing employee information
-              and administrative operations.
-            </p>
+              <div className="mt-5">
+                <p className="text-xs uppercase tracking-wider text-slate-600">
+                  Technologies
+                </p>
 
-            <p className="mt-4 text-sm text-slate-500">
-              React · Laravel · MySQL
-            </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {project.technologies.map((technology) => (
+                    <span
+                      key={technology}
+                      className="rounded-md border border-slate-800 bg-slate-900 px-2.5 py-1 text-xs text-slate-400"
+                    >
+                      {technology}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-          </article>
+              <div className="mt-5">
+                <p className="text-xs uppercase tracking-wider text-slate-600">
+                  Highlights
+                </p>
 
-          <article className="rounded-lg border border-slate-800 bg-slate-950/50 p-5">
-
-            <p className="text-sm text-cyan-400">
-              Management Platform
-            </p>
-
-            <h3 className="mt-2 text-lg font-semibold">
-              Jamia Umar Management Portal
-            </h3>
-
-            <p className="mt-2 text-sm text-slate-400">
-              A digital platform designed to organize and manage
-              institutional information and workflows.
-            </p>
-
-            <p className="mt-4 text-sm text-slate-500">
-              React · JavaScript · MySQL
-            </p>
-
-          </article>
-
+                <div className="mt-2 space-y-1.5">
+                  {project.highlights.map((highlight) => (
+                    <p
+                      key={highlight}
+                      className="text-sm text-slate-400"
+                    >
+                      • {highlight}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
-
       </div>
     </Window>
   );

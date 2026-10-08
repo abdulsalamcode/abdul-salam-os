@@ -34,6 +34,9 @@ const projects = [
       "Reusable UI development",
       "Organizing application features",
     ],
+
+    github: null,
+    liveDemo: null,
   },
 
   {
@@ -71,6 +74,9 @@ const projects = [
       "Database-driven development",
       "Building management systems",
     ],
+
+    github: null,
+    liveDemo: null,
   },
 ];
 

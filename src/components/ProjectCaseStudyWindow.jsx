@@ -130,6 +130,39 @@ function ProjectCaseStudyWindow({
             ))}
           </div>
         </section>
+
+        {/* Project Links */}
+        {(project.github || project.liveDemo) && (
+          <section className="mt-10 border-t border-slate-800 pt-6">
+            <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
+              Project Links
+            </h3>
+
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-lg border border-slate-700 px-4 py-2.5 text-center text-sm font-medium text-slate-200 transition hover:border-slate-500 hover:bg-slate-800"
+                >
+                  GitHub Repository
+                </a>
+              )}
+
+              {project.liveDemo && (
+                <a
+                  href={project.liveDemo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-lg bg-cyan-400 px-4 py-2.5 text-center text-sm font-medium text-slate-950 transition hover:bg-cyan-300"
+                >
+                  Live Demo
+                </a>
+              )}
+            </div>
+          </section>
+        )}
       </div>
     </Window>
   );

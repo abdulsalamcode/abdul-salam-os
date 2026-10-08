@@ -33,7 +33,7 @@ function ProjectCaseStudyWindow({
           </div>
         </div>
 
-        {/* Description */}
+        {/* Overview */}
         <section className="mt-8">
           <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
             Overview
@@ -102,7 +102,7 @@ function ProjectCaseStudyWindow({
           </div>
         </section>
 
-        {/* Contribution */}
+        {/* My Contribution */}
         <section className="mt-8">
           <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
             My Contribution
@@ -113,7 +113,7 @@ function ProjectCaseStudyWindow({
           </p>
         </section>
 
-        {/* Learning */}
+        {/* What I Learned */}
         <section className="mt-8">
           <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
             What I Learned

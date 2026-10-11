@@ -1,30 +1,52 @@
+import DesktopProvider from "./components/desktop/DesktopProvider";
+import WindowLayer from "./components/desktop/WindowLayer";
+import Taskbar from "./components/desktop/Taskbar";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Workspace from "./components/Workspace";
 import Projects from "./components/Projects";
+import Workspace from "./components/Workspace";
 import TechStack from "./components/TechStack";
 import HowIBuild from "./components/HowIBuild";
 import AIDeveloper from "./components/AIDeveloper";
 import Journey from "./components/Journey";
-import Contact from "./components/Contact";
 import About from "./components/About";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 function App() {
   return (
-    <main className="min-h-screen bg-[#0b1120] text-slate-100">
-      <Header />
-      <Hero />
-      <Workspace />
-      <Projects />
-      <TechStack />
-      <HowIBuild />
-      <AIDeveloper />
-      <Journey />
-      <Contact />
-      <About />
-      <Footer />
-    </main>
+    <DesktopProvider>
+      <div
+        id="top"
+        className="min-h-screen bg-[#0b1120] pb-[var(--taskbar-h)] text-slate-100"
+      >
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[130] focus:rounded-lg focus:bg-cyan-400 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-950"
+        >
+          Skip to main content
+        </a>
+
+        <Header />
+
+        <main id="main" tabIndex={-1} className="focus:outline-none">
+          <Hero />
+          <Projects />
+          <Workspace />
+          <TechStack />
+          <HowIBuild />
+          <AIDeveloper />
+          <Journey />
+          <About />
+          <Contact />
+        </main>
+
+        <Footer />
+      </div>
+
+      <WindowLayer />
+      <Taskbar />
+    </DesktopProvider>
   );
 }
 

@@ -1,25 +1,7 @@
 function Hero() {
-  const handleExploreWork = () => {
-    const workspaceSection =
-      document.getElementById("workspace");
-
-    if (workspaceSection) {
-      workspaceSection.scrollIntoView({
-        behavior: "smooth",
-      });
-
-      return;
-    }
-
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: "smooth",
-    });
-  };
-
   return (
-    <section className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:py-24">
-      <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+    <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-20 lg:py-24">
+      <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-[1.15fr_0.85fr]">
 
         {/* Left Side */}
         <div>
@@ -39,12 +21,12 @@ function Hero() {
           </p>
 
           {/* Name */}
-          <h1 className="max-w-4xl text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
             Abdul Salam
           </h1>
 
           {/* Role */}
-          <p className="mt-5 text-2xl font-medium text-slate-300 sm:text-3xl">
+          <p className="mt-4 text-xl font-medium text-slate-300 sm:mt-5 sm:text-3xl">
             Full-Stack Web Developer
           </p>
 
@@ -68,19 +50,17 @@ function Hero() {
 
           {/* Actions */}
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <button
-              type="button"
-              onClick={handleExploreWork}
-              className="rounded-lg bg-cyan-400 px-5 py-3 font-medium text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+            <a
+              href="#work"
+              className="rounded-lg bg-cyan-400 px-5 py-3 text-center font-medium text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               Explore Work
-            </button>
+            </a>
 
             <a
               href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lg border border-slate-700 px-5 py-3 text-center font-medium text-slate-200 transition hover:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500"
+              download="Abdul-Salam-Resume.pdf"
+              className="rounded-lg border border-slate-700 px-5 py-3 text-center font-medium text-slate-200 transition hover:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-500"
             >
               Download CV
             </a>
@@ -126,8 +106,12 @@ function Hero() {
             {/* Photo */}
             <div className="bg-slate-950 p-3">
               <img
-                src="/abdul-salam.png"
+                src="public/abdul-salam.png"
                 alt="Abdul Salam - Full-Stack Web Developer"
+                width="720"
+                height="900"
+                fetchPriority="high"
+                decoding="async"
                 className="aspect-[4/5] w-full rounded-xl object-cover object-top"
               />
             </div>

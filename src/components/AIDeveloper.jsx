@@ -1,12 +1,12 @@
 function AIDeveloper() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24">
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
 
       <p className="text-sm font-medium tracking-wider text-cyan-400">
         AI × DEVELOPER
       </p>
 
-      <h2 className="mt-3 text-3xl font-semibold">
+      <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">
         AI-Assisted Development
       </h2>
 
@@ -15,7 +15,7 @@ function AIDeveloper() {
         understanding, review and testing at the center of the process.
       </p>
 
-      <div className="mt-10 grid gap-4 md:grid-cols-4">
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
         <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
           <span className="text-sm text-cyan-400">01</span>

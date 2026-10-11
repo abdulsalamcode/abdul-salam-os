@@ -11,104 +11,108 @@ function ProjectCaseStudyWindow({
 
   return (
     <Window
+      modal
       title={project.title}
       onClose={onClose}
       onMinimize={onMinimize}
     >
       <div>
-        {/* Header */}
-        <div>
-          <p className="text-sm font-medium tracking-wider text-cyan-400">
-            {project.category}
-          </p>
+        {/* Project Header */}
+        <div className="border-b border-slate-800 pb-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-cyan-400">
+                Case Study
+              </p>
 
-          <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <h2 className="text-2xl font-semibold text-slate-100">
-              {project.title}
-            </h2>
+              <h2 className="mt-2 text-2xl font-semibold text-slate-100 sm:text-3xl">
+                {project.title}
+              </h2>
 
-            <span className="w-fit rounded-full border border-emerald-500/20 bg-emerald-500/5 px-2.5 py-1 text-xs text-emerald-400">
+              <p className="mt-2 text-sm text-slate-500">
+                {project.category}
+              </p>
+            </div>
+
+            <span className="w-fit rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1.5 text-xs text-emerald-400">
               {project.status}
             </span>
           </div>
-        </div>
 
-        {/* Overview */}
-        <section className="mt-8">
-          <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
-            Overview
-          </h3>
-
-          <p className="mt-3 leading-7 text-slate-400">
-            {project.description}
-          </p>
-        </section>
-
-        {/* Problem */}
-        <section className="mt-8">
-          <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
-            Problem
-          </h3>
-
-          <p className="mt-3 leading-7 text-slate-400">
-            {project.problem}
-          </p>
-        </section>
-
-        {/* Solution */}
-        <section className="mt-8">
-          <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
-            Solution
-          </h3>
-
-          <p className="mt-3 leading-7 text-slate-400">
-            {project.solution}
-          </p>
-        </section>
-
-        {/* Features */}
-        <section className="mt-8">
-          <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
-            Key Features
-          </h3>
-
-          <div className="mt-3 space-y-2">
-            {project.features.map((feature) => (
-              <p
-                key={feature}
-                className="text-sm leading-6 text-slate-400"
-              >
-                • {feature}
-              </p>
-            ))}
-          </div>
-        </section>
-
-        {/* Technologies */}
-        <section className="mt-8">
-          <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
-            Technologies
-          </h3>
-
-          <div className="mt-3 flex flex-wrap gap-2">
+          {/* Technologies */}
+          <div className="mt-5 flex flex-wrap gap-2">
             {project.technologies.map((technology) => (
               <span
                 key={technology}
-                className="rounded-md border border-slate-800 bg-slate-900 px-3 py-1.5 text-xs text-slate-400"
+                className="rounded-md border border-slate-800 bg-slate-950 px-2.5 py-1 text-xs text-slate-400"
               >
                 {technology}
               </span>
             ))}
           </div>
+        </div>
+
+        {/* Quick Overview */}
+        <section className="mt-6">
+          <p className="text-sm leading-7 text-slate-400">
+            {project.description}
+          </p>
+        </section>
+
+        {/* Problem + Solution */}
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          <section className="rounded-xl border border-slate-800 bg-slate-950/40 p-5">
+            <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
+              Problem
+            </h3>
+
+            <p className="mt-3 text-sm leading-7 text-slate-400">
+              {project.problem}
+            </p>
+          </section>
+
+          <section className="rounded-xl border border-slate-800 bg-slate-950/40 p-5">
+            <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
+              Solution
+            </h3>
+
+            <p className="mt-3 text-sm leading-7 text-slate-400">
+              {project.solution}
+            </p>
+          </section>
+        </div>
+
+        {/* Key Features */}
+        <section className="mt-8">
+          <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
+            Key Features
+          </h3>
+
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {project.features.map((feature, index) => (
+              <div
+                key={feature}
+                className="rounded-lg border border-slate-800 bg-slate-950/40 p-4"
+              >
+                <span className="font-mono text-xs text-cyan-400">
+                  0{index + 1}
+                </span>
+
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  {feature}
+                </p>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* My Contribution */}
-        <section className="mt-8">
+        <section className="mt-8 rounded-xl border border-slate-800 bg-slate-950/40 p-5">
           <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
             My Contribution
           </h3>
 
-          <p className="mt-3 leading-7 text-slate-400">
+          <p className="mt-3 text-sm leading-7 text-slate-400">
             {project.contribution}
           </p>
         </section>
@@ -119,14 +123,16 @@ function ProjectCaseStudyWindow({
             What I Learned
           </h3>
 
-          <div className="mt-3 space-y-2">
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
             {project.learning.map((item) => (
-              <p
+              <div
                 key={item}
-                className="text-sm leading-6 text-slate-400"
+                className="rounded-lg border border-slate-800 bg-slate-950/30 p-4"
               >
-                • {item}
-              </p>
+                <p className="text-sm leading-6 text-slate-400">
+                  • {item}
+                </p>
+              </div>
             ))}
           </div>
         </section>

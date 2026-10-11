@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
+/* Accessible secondary-text shades (WCAG AA on the dark surfaces) */
+@theme {
+  --color-slate-500: #8091a9;
+  --color-slate-600: #7b8ba3;
+}
+
 :root {
+  --taskbar-h: 3.5rem;
   font-family: Inter, system-ui, sans-serif;
   color: #f8fafc;
   background: #0b1120;
@@ -12,7 +19,20 @@
 
 body {
   margin: 0;
-  min-width: 320px;
   min-height: 100vh;
   background: #0b1120;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+/* Keep anchor targets clear of the sticky header */
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

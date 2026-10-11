@@ -2,13 +2,13 @@ function TechStack() {
   return (
     <section
       id="stack"
-      className="mx-auto max-w-7xl px-6 py-24"
+      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24"
     >
       <p className="text-sm font-medium tracking-wider text-cyan-400">
         TECH STACK
       </p>
 
-      <h2 className="mt-3 text-3xl font-semibold">
+      <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">
         Technologies I Work With
       </h2>
 
@@ -17,7 +17,7 @@ function TechStack() {
         applications and digital experiences.
       </p>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 
         <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-6">
           <h3 className="font-semibold">Frontend</h3>

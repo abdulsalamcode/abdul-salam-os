@@ -24,6 +24,7 @@ function TerminalWindow({
   const [historyIndex, setHistoryIndex] = useState(-1);
 
   const terminalEndRef = useRef(null);
+  const inputRef = useRef(null);
 
   const commands = [
     "help",
@@ -59,6 +60,14 @@ function TerminalWindow({
     allSuggestions.find((item) =>
       item.startsWith(trimmedInput)
     );
+
+  // Focus the input on devices with a mouse. On touch devices we skip it
+  // so the on-screen keyboard does not pop up and cover the terminal.
+  useEffect(() => {
+    if (window.matchMedia("(pointer: fine)").matches) {
+      inputRef.current?.focus();
+    }
+  }, []);
 
   useEffect(() => {
     terminalEndRef.current?.scrollIntoView({
@@ -251,7 +260,7 @@ Type "help" or "?" to see available commands.`;
       onClose={onClose}
       onMinimize={onMinimize}
     >
-      <div className="flex h-[60vh] min-h-[360px] flex-col overflow-hidden rounded-lg border border-slate-800 bg-slate-950 font-mono text-sm">
+      <div className="flex h-[calc(100dvh-var(--taskbar-h)-6rem)] min-h-[300px] flex-col sm:h-[60vh] sm:min-h-[360px] overflow-hidden rounded-lg border border-slate-800 bg-slate-950 font-mono text-sm">
 
         {/* Terminal Header */}
         <div className="border-b border-slate-800 px-4 py-3">
@@ -261,7 +270,7 @@ Type "help" or "?" to see available commands.`;
         </div>
 
         {/* Terminal Output */}
-        <div className="min-h-0 flex-1 overflow-y-auto px-5 py-4">
+        <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4 sm:px-5">
           <div className="space-y-3">
 
             {history.map((item, index) => (
@@ -280,7 +289,7 @@ Type "help" or "?" to see available commands.`;
                 )}
 
                 {item.type === "response" && (
-                  <p className="whitespace-pre-line break-words text-slate-300">
+                  <p className="whitespace-pre-wrap break-words text-slate-300">
                     {item.text}
                   </p>
                 )}
@@ -296,7 +305,7 @@ Type "help" or "?" to see available commands.`;
         {/* Suggestion */}
         {suggestion &&
           suggestion !== trimmedInput && (
-            <div className="border-t border-slate-900 px-5 py-2 text-xs text-slate-600">
+            <div className="border-t border-slate-900 px-4 py-2 sm:px-5 text-xs text-slate-600">
               Press{" "}
               <span className="text-slate-400">
                 Tab
@@ -311,27 +320,31 @@ Type "help" or "?" to see available commands.`;
         {/* Command Input */}
         <form
           onSubmit={handleCommand}
-          className="border-t border-slate-800 px-5 py-4"
+          className="border-t border-slate-800 px-4 py-3 sm:px-5 sm:py-4"
         >
           <div className="flex items-center gap-2">
 
             <span className="shrink-0 text-emerald-400">
-              abdul@portfolio:~$
+              <span className="hidden sm:inline">
+                abdul@portfolio:~
+              </span>
+              $
             </span>
 
             <input
+              ref={inputRef}
               type="text"
+              aria-label="Terminal command"
               value={input}
               onChange={(event) => {
                 setInput(event.target.value);
                 setHistoryIndex(-1);
               }}
               onKeyDown={handleKeyDown}
-              autoFocus
               spellCheck="false"
               autoComplete="off"
               placeholder="type a command..."
-              className="min-w-0 flex-1 bg-transparent text-slate-200 outline-none placeholder:text-slate-700"
+              className="min-w-0 flex-1 bg-transparent text-base text-slate-200 outline-none sm:text-sm placeholder:text-slate-500"
             />
 
           </div>

@@ -2,7 +2,7 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="mx-auto max-w-7xl px-6 py-24"
+      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24"
     >
       <p className="text-sm font-medium tracking-wider text-cyan-400">
         CONTACT
@@ -27,13 +27,15 @@ function Contact() {
             Email
           </p>
 
-          <h3 className="mt-2 font-semibold">
+          <h3 className="mt-2 break-all font-semibold">
             itsabdulsalam2@gmail.com
           </h3>
         </a>
 
         <a
-          href="#"
+          href="https://linkedin.com/in/abdul-salam-0b0759276"
+          target="_blank"
+          rel="noopener noreferrer"
           className="rounded-xl border border-slate-800 bg-slate-900/50 p-6 transition hover:border-slate-600"
         >
           <p className="text-sm text-slate-500">
@@ -46,7 +48,9 @@ function Contact() {
         </a>
 
         <a
-          href="#"
+          href="https://github.com/abdulsalamcode"
+          target="_blank"
+          rel="noopener noreferrer"
           className="rounded-xl border border-slate-800 bg-slate-900/50 p-6 transition hover:border-slate-600"
         >
           <p className="text-sm text-slate-500">

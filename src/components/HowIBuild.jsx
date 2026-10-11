@@ -1,56 +1,66 @@
+import { BUILD_STEPS } from "../data/process";
+import Icon from "./ui/Icon";
+import Reveal from "./ui/Reveal";
+import SectionHeading from "./ui/SectionHeading";
+import SpotlightCard from "./ui/SpotlightCard";
+
 function HowIBuild() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
+    <section
+      id="process"
+      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24"
+    >
+      <SectionHeading
+        index="02"
+        eyebrow="HOW I BUILD"
+        title="From Idea to Product"
+        description="My development process focuses on understanding the problem first, then building, testing and improving the solution."
+      />
 
-      <p className="text-sm font-medium tracking-wider text-cyan-400">
-        HOW I BUILD
-      </p>
+      <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        {BUILD_STEPS.map((step, index) => (
+          <Reveal
+            as="li"
+            key={step.id}
+            delay={index * 120}
+            className="relative"
+          >
+            <SpotlightCard className="h-full p-6 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-950/30">
+              {/* Big faint step number */}
+              <span
+                className="pointer-events-none absolute -right-2 -top-4 select-none font-mono text-7xl font-bold text-slate-800/60"
+                aria-hidden="true"
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
 
-      <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">
-        From Idea to Product
-      </h2>
+              <span className="relative flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 transition group-hover:scale-105">
+                <Icon name={step.icon} className="h-6 w-6" />
+              </span>
 
-      <p className="mt-4 max-w-2xl text-slate-400">
-        My development process focuses on understanding the
-        problem first, then building, testing and improving the solution.
-      </p>
+              <p className="relative mt-5 font-mono text-xs text-cyan-400">
+                STEP {String(index + 1).padStart(2, "0")}
+              </p>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <h3 className="relative mt-1 text-lg font-semibold text-white">
+                {step.title}
+              </h3>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-          <span className="text-sm text-cyan-400">01</span>
-          <h3 className="mt-3 font-semibold">Understand</h3>
-          <p className="mt-2 text-sm text-slate-400">
-            Understand the requirements and define the problem.
-          </p>
-        </div>
+              <p className="relative mt-2 text-sm leading-6 text-slate-400">
+                {step.description}
+              </p>
+            </SpotlightCard>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-          <span className="text-sm text-cyan-400">02</span>
-          <h3 className="mt-3 font-semibold">Plan</h3>
-          <p className="mt-2 text-sm text-slate-400">
-            Plan the UI, components, data flow and application structure.
-          </p>
-        </div>
-
-        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-          <span className="text-sm text-cyan-400">03</span>
-          <h3 className="mt-3 font-semibold">Build</h3>
-          <p className="mt-2 text-sm text-slate-400">
-            Build the interface, APIs, database and required functionality.
-          </p>
-        </div>
-
-        <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-          <span className="text-sm text-cyan-400">04</span>
-          <h3 className="mt-3 font-semibold">Test & Improve</h3>
-          <p className="mt-2 text-sm text-slate-400">
-            Test the product, fix issues and continuously improve it.
-          </p>
-        </div>
-
-      </div>
-
+            {/* Connector to the next step (large screens) */}
+            {index < BUILD_STEPS.length - 1 && (
+              <span
+                className="absolute -right-6 top-14 hidden h-px w-6 bg-gradient-to-r from-cyan-400/60 to-transparent lg:block"
+                aria-hidden="true"
+              />
+            )}
+          </Reveal>
+        ))}
+      </ol>
     </section>
   );
 }

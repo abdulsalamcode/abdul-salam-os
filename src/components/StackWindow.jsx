@@ -1,4 +1,6 @@
 import Window from "./Window";
+import Icon from "./ui/Icon";
+import STACK from "../data/stack";
 
 function StackWindow({ onClose, onMinimize }) {
   return (
@@ -8,7 +10,6 @@ function StackWindow({ onClose, onMinimize }) {
       onMinimize={onMinimize}
     >
       <div>
-
         <p className="text-sm font-medium tracking-wider text-cyan-400">
           TECH STACK
         </p>
@@ -23,59 +24,32 @@ function StackWindow({ onClose, onMinimize }) {
         </p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {STACK.map((group) => (
+            <div
+              key={group.id}
+              className="rounded-lg border border-slate-800 bg-slate-950/50 p-5"
+            >
+              <div className="flex items-center gap-3">
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-300">
+                  <Icon name={group.icon} className="h-5 w-5" />
+                </span>
 
-          <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-5">
-            <h3 className="font-semibold">
-              Frontend
-            </h3>
+                <h3 className="font-semibold">{group.title}</h3>
+              </div>
 
-            <div className="mt-4 space-y-2 text-sm text-slate-400">
-              <p>React JS</p>
-              <p>JavaScript</p>
-              <p>HTML</p>
-              <p>CSS</p>
-              <p>Tailwind CSS</p>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-md border border-slate-800 bg-slate-900 px-2.5 py-1 text-xs text-slate-300"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-
-          <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-5">
-            <h3 className="font-semibold">
-              Backend
-            </h3>
-
-            <div className="mt-4 space-y-2 text-sm text-slate-400">
-              <p>PHP</p>
-              <p>Laravel</p>
-              <p>REST APIs</p>
-            </div>
-          </div>
-
-          <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-5">
-            <h3 className="font-semibold">
-              Database
-            </h3>
-
-            <div className="mt-4 space-y-2 text-sm text-slate-400">
-              <p>MySQL</p>
-              <p>SQL</p>
-            </div>
-          </div>
-
-          <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-5">
-            <h3 className="font-semibold">
-              Development
-            </h3>
-
-            <div className="mt-4 space-y-2 text-sm text-slate-400">
-              <p>Git</p>
-              <p>GitHub</p>
-              <p>VS Code</p>
-              <p>AI-Assisted Development</p>
-            </div>
-          </div>
-
+          ))}
         </div>
-
       </div>
     </Window>
   );

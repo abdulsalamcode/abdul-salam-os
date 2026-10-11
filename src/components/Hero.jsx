@@ -6,39 +6,57 @@ function Hero() {
         {/* Left Side */}
         <div>
           {/* Availability */}
-          <div className="mb-6 flex items-center gap-2 text-sm text-emerald-400">
-            <span
-              className="h-2 w-2 rounded-full bg-emerald-400"
-              aria-hidden="true"
-            ></span>
+          <div
+            className="hero-item mb-6 flex items-center gap-2 text-sm text-emerald-400"
+            style={{ "--d": "0ms" }}
+          >
+            <span className="relative flex h-2 w-2" aria-hidden="true">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400/60 motion-safe:animate-ping" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
 
             <span>Available for Internship</span>
           </div>
 
           {/* Eyebrow */}
-          <p className="mb-4 text-sm font-medium tracking-[0.25em] text-cyan-400">
+          <p
+            className="hero-item mb-4 text-sm font-medium tracking-[0.25em] text-cyan-400"
+            style={{ "--d": "90ms" }}
+          >
             BUILDING DIGITAL PRODUCTS
           </p>
 
           {/* Name */}
-          <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1
+            className="hero-item max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl"
+            style={{ "--d": "180ms" }}
+          >
             Abdul Salam
           </h1>
 
           {/* Role */}
-          <p className="mt-4 text-xl font-medium text-slate-300 sm:mt-5 sm:text-3xl">
+          <p
+            className="hero-item mt-4 text-xl font-medium text-slate-300 sm:mt-5 sm:text-3xl"
+            style={{ "--d": "270ms" }}
+          >
             Full-Stack Web Developer
           </p>
 
           {/* Description */}
-          <p className="mt-6 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
+          <p
+            className="hero-item mt-6 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg"
+            style={{ "--d": "360ms" }}
+          >
             I build modern web applications and digital
             experiences using React, Laravel, MySQL and
             AI-assisted development.
           </p>
 
           {/* Tech Line */}
-          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-slate-500">
+          <div
+            className="hero-item mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-slate-500"
+            style={{ "--d": "450ms" }}
+          >
             <span>React</span>
             <span aria-hidden="true">•</span>
             <span>JavaScript</span>
@@ -49,7 +67,10 @@ function Hero() {
           </div>
 
           {/* Actions */}
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div
+            className="hero-item mt-8 flex flex-col gap-3 sm:flex-row"
+            style={{ "--d": "540ms" }}
+          >
             <a
               href="#work"
               className="rounded-lg bg-cyan-400 px-5 py-3 text-center font-medium text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
@@ -68,16 +89,19 @@ function Hero() {
         </div>
 
         {/* Right Side - Profile */}
-        <div className="relative mx-auto w-full max-w-md lg:ml-auto">
+        <div
+          className="hero-item relative mx-auto w-full max-w-md lg:ml-auto"
+          style={{ "--d": "320ms" }}
+        >
 
           {/* Subtle Glow */}
           <div
-            className="absolute -inset-4 rounded-3xl bg-cyan-400/5 blur-2xl"
+            className="absolute -inset-4 rounded-3xl bg-cyan-400/10 blur-2xl motion-safe:animate-pulse"
             aria-hidden="true"
           ></div>
 
           {/* Profile Card */}
-          <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/70 shadow-2xl">
+          <div className="float-slow relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/70 shadow-2xl">
 
             {/* Card Top Bar */}
             <div className="flex items-center justify-between border-b border-slate-800 px-4 py-3">
@@ -106,7 +130,7 @@ function Hero() {
             {/* Photo */}
             <div className="bg-slate-950 p-3">
               <img
-                src="public/abdul-salam.png"
+                src="/abdul-salam.png"
                 alt="Abdul Salam - Full-Stack Web Developer"
                 width="720"
                 height="900"

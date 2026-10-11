@@ -31,8 +31,298 @@ section[id] {
   scroll-margin-top: 4.5rem;
 }
 
+/* ------------------------------------------------------------
+   Animations and effects
+   ------------------------------------------------------------ */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes drift-a {
+  to {
+    transform: translate(8vw, 6vh) scale(1.15);
+  }
+}
+
+@keyframes drift-b {
+  to {
+    transform: translate(-7vw, -8vh) scale(1.1);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ring-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes bar-fill {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer components {
+  /* Reveal on scroll (see components/ui/Reveal.jsx) */
+  .reveal {
+    opacity: 0;
+    transition:
+      opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reveal-up {
+    transform: translateY(28px);
+  }
+  /* Sideways slides stay small, and only on wider screens, so they
+     can never push the page wider than the screen. */
+  .reveal-left,
+  .reveal-right {
+    transform: translateY(28px);
+  }
+  @media (min-width: 640px) {
+    .reveal-left {
+      transform: translateX(-20px);
+    }
+    .reveal-right {
+      transform: translateX(20px);
+    }
+  }
+  .reveal-scale {
+    transform: scale(0.96);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hero entrance: starts when the intro lifts (data-ready on App) */
+  .hero-item {
+    animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+  [data-ready="false"] .hero-item {
+    animation: none;
+    opacity: 0;
+  }
+
+  .float-slow {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Background glows and grid */
+  .aurora {
+    position: absolute;
+    border-radius: 9999px;
+    will-change: transform;
+  }
+  .aurora-a {
+    top: -12rem;
+    left: -10rem;
+    width: 44rem;
+    height: 44rem;
+    background: radial-gradient(
+      closest-side,
+      rgba(34, 211, 238, 0.16),
+      transparent
+    );
+    animation: drift-a 26s ease-in-out infinite alternate;
+  }
+  .aurora-b {
+    top: 30%;
+    right: -14rem;
+    width: 48rem;
+    height: 48rem;
+    background: radial-gradient(
+      closest-side,
+      rgba(99, 102, 241, 0.14),
+      transparent
+    );
+    animation: drift-b 32s ease-in-out infinite alternate;
+  }
+  .aurora-c {
+    bottom: -16rem;
+    left: 20%;
+    width: 40rem;
+    height: 40rem;
+    background: radial-gradient(
+      closest-side,
+      rgba(14, 165, 233, 0.1),
+      transparent
+    );
+    animation: drift-a 36s ease-in-out infinite alternate-reverse;
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      #000 20%,
+      transparent 75%
+    );
+  }
+
+  /* Card light that follows the pointer */
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: radial-gradient(
+      340px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(34, 211, 238, 0.12),
+      transparent 60%
+    );
+  }
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+
+  /* Scrolling technology strip */
+  .marquee {
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Journey timeline line that draws itself */
+  .timeline-fill {
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: transform 1.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .is-visible .timeline-fill {
+    transform: scaleY(1);
+  }
+
+  /* Terminal-style log lines (AI section) */
+  .log-line {
+    opacity: 0;
+  }
+  .is-visible .log-line {
+    animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  /* Intro screen */
+  .intro-pop {
+    animation: pop-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .intro-ring {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: ring-draw 1.7s cubic-bezier(0.6, 0, 0.2, 1) 0.2s forwards;
+  }
+  .intro-fade {
+    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s both;
+  }
+  .intro-line {
+    opacity: 0;
+    animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .intro-bar {
+    animation: bar-fill 2.2s cubic-bezier(0.5, 0, 0.2, 1) 0.1s both;
+  }
+}
+
+/* Users who prefer reduced motion get a calm, static page */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal-up,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-item,
+  [data-ready="false"] .hero-item {
+    animation: none;
+    opacity: 1;
+  }
+
+  .float-slow,
+  .aurora {
+    animation: none;
+  }
+
+  .marquee-track {
+    animation: none;
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .marquee-dup {
+    display: none;
+  }
+
+  .timeline-fill {
+    transform: none;
+    transition: none;
+  }
+
+  .log-line,
+  .is-visible .log-line {
+    opacity: 1;
+    animation: none;
   }
 }

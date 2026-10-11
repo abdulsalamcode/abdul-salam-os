@@ -1,3 +1,4 @@
+import { useState } from "react";
 import DesktopProvider from "./components/desktop/DesktopProvider";
 import WindowLayer from "./components/desktop/WindowLayer";
 import Taskbar from "./components/desktop/Taskbar";
@@ -12,13 +13,24 @@ import Journey from "./components/Journey";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import AuroraBackground from "./components/AuroraBackground";
+import IntroScreen from "./components/IntroScreen";
+import { shouldPlayIntro } from "./lib/intro";
 
 function App() {
+  // The intro plays once per tab session (add ?intro to replay it)
+  const [playIntro] = useState(shouldPlayIntro);
+  const [showIntro, setShowIntro] = useState(playIntro);
+  const [ready, setReady] = useState(!playIntro);
+
   return (
     <DesktopProvider>
+      <AuroraBackground />
+
       <div
         id="top"
-        className="min-h-screen bg-[#0b1120] pb-[var(--taskbar-h)] text-slate-100"
+        data-ready={ready}
+        className="min-h-screen pb-[var(--taskbar-h)] text-slate-100"
       >
         <a
           href="#main"
@@ -46,6 +58,13 @@ function App() {
 
       <WindowLayer />
       <Taskbar />
+
+      {showIntro && (
+        <IntroScreen
+          onReveal={() => setReady(true)}
+          onDone={() => setShowIntro(false)}
+        />
+      )}
     </DesktopProvider>
   );
 }

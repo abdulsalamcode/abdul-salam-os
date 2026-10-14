@@ -1,11 +1,11 @@
 // All contact cards (Contact section, Contact window, Footer icons).
 //
-// HOW TO ADD YOUR LINKS LATER
-// For each card that says "Coming soon", fill in two fields:
+// HOW TO EDIT A CARD
+// Each card has two fields (a card with both empty shows "Coming soon"):
 //   display -> the text shown on the card
 //   href    -> the link
 // Examples:
-//   phone:     display: "+92 300 1599511",   href: "tel:+923001599511"
+//   phone:     display: "+92 300 0000000",   href: "tel:+923000000000"
 //   whatsapp:  display: "Chat on WhatsApp",  href: "https://wa.me/923000000000"
 //   instagram: display: "@yourname",         href: "https://instagram.com/yourname"
 //   tiktok:    display: "@yourname",         href: "https://tiktok.com/@yourname"
@@ -50,8 +50,8 @@ export const CONTACTS = [
     group: "direct",
     label: "Phone",
     icon: "phone",
-    display: "",
-    href: "",
+    display: "+92 300 1599511",
+    href: "tel:+923001599511",
     hint: "Call me directly",
     tile: "border-amber-400/20 bg-amber-400/10 text-amber-300",
     hover: "hover:border-amber-400/50 hover:shadow-amber-500/10",
@@ -61,8 +61,8 @@ export const CONTACTS = [
     group: "direct",
     label: "WhatsApp",
     icon: "whatsapp",
-    display: "",
-    href: "",
+    display: "Chat on WhatsApp",
+    href: "https://wa.me/923001599511",
     hint: "Message me",
     tile: "border-emerald-400/20 bg-emerald-400/10 text-emerald-300",
     hover: "hover:border-emerald-400/50 hover:shadow-emerald-500/10",
@@ -72,8 +72,8 @@ export const CONTACTS = [
     group: "direct",
     label: "Instagram",
     icon: "instagram",
-    display: "",
-    href: "",
+    display: "@abdul_salam511",
+    href: "https://instagram.com/abdul_salam511",
     hint: "Follow along",
     tile: "border-pink-400/20 bg-pink-400/10 text-pink-300",
     hover: "hover:border-pink-400/50 hover:shadow-pink-500/10",
@@ -83,8 +83,8 @@ export const CONTACTS = [
     group: "direct",
     label: "TikTok",
     icon: "tiktok",
-    display: "",
-    href: "",
+    display: "@abdulsalamdev",
+    href: "https://www.tiktok.com/@abdulsalamdev",
     hint: "Watch my content",
     tile: "border-fuchsia-400/20 bg-fuchsia-400/10 text-fuchsia-300",
     hover: "hover:border-fuchsia-400/50 hover:shadow-fuchsia-500/10",

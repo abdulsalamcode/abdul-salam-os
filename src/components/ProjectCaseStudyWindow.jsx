@@ -1,4 +1,5 @@
 import Window from "./Window";
+import Icon from "./ui/Icon";
 
 function ProjectCaseStudyWindow({
   project,
@@ -34,9 +35,11 @@ function ProjectCaseStudyWindow({
               </p>
             </div>
 
-            <span className="w-fit rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1.5 text-xs text-emerald-400">
-              {project.status}
-            </span>
+            {project.status && (
+              <span className="w-fit rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1.5 text-xs text-emerald-400">
+                {project.status}
+              </span>
+            )}
           </div>
 
           {/* Technologies */}
@@ -106,6 +109,34 @@ function ProjectCaseStudyWindow({
           </div>
         </section>
 
+        {/* Engineering Highlights */}
+        {project.highlights?.length > 0 && (
+          <section className="mt-8">
+            <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
+              Engineering Highlights
+            </h3>
+
+            <ul className="mt-4 space-y-3">
+              {project.highlights.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 rounded-lg border border-slate-800 bg-slate-950/40 p-4"
+                >
+                  <Icon
+                    name="check"
+                    className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400"
+                    strokeWidth={2.5}
+                  />
+
+                  <p className="text-sm leading-6 text-slate-400">
+                    {item}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         {/* My Contribution */}
         <section className="mt-8 rounded-xl border border-slate-800 bg-slate-950/40 p-5">
           <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
@@ -118,24 +149,26 @@ function ProjectCaseStudyWindow({
         </section>
 
         {/* What I Learned */}
-        <section className="mt-8">
-          <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
-            What I Learned
-          </h3>
+        {project.learning?.length > 0 && (
+          <section className="mt-8">
+            <h3 className="text-sm font-medium uppercase tracking-wider text-slate-500">
+              What I Learned
+            </h3>
 
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {project.learning.map((item) => (
-              <div
-                key={item}
-                className="rounded-lg border border-slate-800 bg-slate-950/30 p-4"
-              >
-                <p className="text-sm leading-6 text-slate-400">
-                  • {item}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {project.learning.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-lg border border-slate-800 bg-slate-950/30 p-4"
+                >
+                  <p className="text-sm leading-6 text-slate-400">
+                    • {item}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Project Links */}
         {(project.github || project.liveDemo) && (
@@ -153,6 +186,7 @@ function ProjectCaseStudyWindow({
                   className="rounded-lg border border-slate-700 px-4 py-2.5 text-center text-sm font-medium text-slate-200 transition hover:border-slate-500 hover:bg-slate-800"
                 >
                   GitHub Repository
+                  <span className="sr-only"> (opens in a new tab)</span>
                 </a>
               )}
 
@@ -164,6 +198,7 @@ function ProjectCaseStudyWindow({
                   className="rounded-lg bg-cyan-400 px-4 py-2.5 text-center text-sm font-medium text-slate-950 transition hover:bg-cyan-300"
                 >
                   Live Demo
+                  <span className="sr-only"> (opens in a new tab)</span>
                 </a>
               )}
             </div>

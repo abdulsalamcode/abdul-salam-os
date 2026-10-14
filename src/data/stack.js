@@ -7,6 +7,14 @@ const STACK = [
     icon: "layout",
     description: "Responsive, component-based interfaces",
     items: ["React JS", "JavaScript", "HTML", "CSS", "Tailwind CSS"],
+        items: [
+      "React JS",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Tailwind CSS",
+      "Zustand",
+    ],
   },
   {
     id: "backend",

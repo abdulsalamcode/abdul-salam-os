@@ -5,7 +5,7 @@
 //   display -> the text shown on the card
 //   href    -> the link
 // Examples:
-//   phone:     display: "+92 300 0000000",   href: "tel:+923000000000"
+//   phone:     display: "+92 300 1599511",   href: "tel:+923001599511"
 //   whatsapp:  display: "Chat on WhatsApp",  href: "https://wa.me/923000000000"
 //   instagram: display: "@yourname",         href: "https://instagram.com/yourname"
 //   tiktok:    display: "@yourname",         href: "https://tiktok.com/@yourname"

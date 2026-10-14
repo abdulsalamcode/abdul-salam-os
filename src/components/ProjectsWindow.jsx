@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Window from "./Window";
 import ProjectCaseStudyWindow from "./ProjectCaseStudyWindow";
+import ProjectActions from "./ProjectActions";
 import projects from "../data/projects";
 
 function ProjectsWindow({ onClose, onMinimize }) {
@@ -53,9 +54,11 @@ function ProjectsWindow({ onClose, onMinimize }) {
                     </h3>
                   </div>
 
-                  <span className="w-fit rounded-full border border-emerald-500/20 bg-emerald-500/5 px-2.5 py-1 text-xs text-emerald-400">
-                    {project.status}
-                  </span>
+                  {project.status && (
+                    <span className="w-fit rounded-full border border-emerald-500/20 bg-emerald-500/5 px-2.5 py-1 text-xs text-emerald-400">
+                      {project.status}
+                    </span>
+                  )}
                 </div>
 
                 {/* Description */}
@@ -99,14 +102,13 @@ function ProjectsWindow({ onClose, onMinimize }) {
                   </div>
                 </div>
 
-                {/* Case Study Button */}
-                <button
-                  type="button"
-                  onClick={() => handleOpenCaseStudy(project)}
-                  className="mt-6 rounded-lg border border-cyan-400/30 bg-cyan-400/5 px-4 py-2.5 text-sm font-medium text-cyan-400 transition hover:border-cyan-400/60 hover:bg-cyan-400/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/50"
-                >
-                  View Case Study
-                </button>
+                {/* Actions */}
+                <div className="mt-6">
+                  <ProjectActions
+                    project={project}
+                    onOpen={handleOpenCaseStudy}
+                  />
+                </div>
               </article>
             ))}
           </div>

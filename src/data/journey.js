@@ -1,4 +1,4 @@
-// Journey timeline. Check and update these dates/texts before going live.
+// Journey timeline. Add or edit entries here; the Journey section updates itself.
 // status: "done" | "current" | "next"
 const JOURNEY = [
   {
@@ -9,6 +9,15 @@ const JOURNEY = [
     status: "done",
     description:
       "Built a foundation in computer science, programming, databases, software engineering and web development.",
+  },
+  {
+    id: "navttc",
+    period: "After BSCS",
+    title: "Advance Web Application Development",
+    icon: "code",
+    status: "done",
+    description:
+      "Completed NAVTTC's Advance Web Application Development course, turning my computer science foundation into hands-on web development skills.",
   },
   {
     id: "focus",

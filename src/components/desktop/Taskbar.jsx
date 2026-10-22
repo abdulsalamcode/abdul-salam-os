@@ -118,7 +118,7 @@ function Taskbar() {
   return (
     <nav
       aria-label="Taskbar"
-      className="fixed inset-x-0 bottom-0 z-[100] h-[var(--taskbar-h)] border-t border-slate-800 bg-[#0b1120]/85 shadow-[0_-8px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-cyan-400/40 before:to-transparent"
+      className="fixed inset-x-0 bottom-0 z-[100] h-[var(--taskbar-h)] border-t border-slate-800 bg-slate-950/85 shadow-[0_-8px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-cyan-400/40 before:to-transparent"
     >
       <div className="flex h-full items-center gap-1 pl-2 sm:gap-2 sm:pl-3">
         {/* Start button + menu */}
@@ -136,7 +136,7 @@ function Taskbar() {
             }`}
           >
             <span
-              className="flex h-7 w-7 items-center justify-center rounded-md border border-cyan-400/40 bg-slate-900 font-mono text-xs font-bold text-cyan-400 shadow-[0_0_14px_-4px_rgba(34,211,238,0.7)]"
+              className="flex h-7 w-7 items-center justify-center rounded-md border border-cyan-400/40 bg-slate-900 font-mono text-xs font-bold text-cyan-400 shadow-[0_0_14px_-4px_rgba(224,169,59,0.7)]"
               aria-hidden="true"
             >
               AS

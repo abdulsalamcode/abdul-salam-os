@@ -1,16 +1,80 @@
+/* Self-hosted Public Sans (variable). Weights used on the site: 400, 500, 600 */
+@import "@fontsource-variable/public-sans/wght.css";
 @import "tailwindcss";
 
-/* Accessible secondary-text shades (WCAG AA on the dark surfaces) */
-@theme {
-  --color-slate-500: #8091a9;
-  --color-slate-600: #7b8ba3;
+/* ------------------------------------------------------------
+   Design tokens
+   ------------------------------------------------------------
+   Palette: warm graphite with one ochre accent.
+
+   1) SEMANTIC TOKENS (use these in new code):
+        bg, surface, raised, line  -> backgrounds and borders
+        ink, ink-body, ink-muted, ink-faint -> text
+        accent, accent-hover, accent-deep, accent-shade, accent-ink
+        focus -> keyboard focus ring colour
+
+   2) COMPATIBILITY MAPPINGS (temporary):
+      The components still use the old Tailwind class names, so the
+      names below are mapped onto the tokens above. Only the shades
+      the site actually uses are mapped.
+        slate-950 = bg        slate-900 = surface
+        slate-800 = raised    slate-700 = line
+        slate-100..600 = text steps
+        cyan-400 = accent     cyan-300 = accent-hover
+        cyan-500 = accent-deep  cyan-950 = accent-shade
+      "cyan-*" now means ochre. Unused shades (e.g. cyan-100) are NOT
+      mapped on purpose: if one appears later it will show the old
+      blue-ish default, which makes the mistake easy to spot.
+      Status colours (emerald) and the contact-card colours are
+      intentionally left alone.
+   ------------------------------------------------------------ */
+@theme static {
+  --font-sans: "Public Sans Variable", ui-sans-serif, system-ui,
+    sans-serif;
+  /* Only 400 / 500 / 600 are used: bold maps to 600 */
+  --font-weight-bold: 600;
+
+  /* Semantic tokens */
+  --color-bg: #11100e;
+  --color-surface: #1a1815;
+  --color-raised: #2a2722;
+  --color-line: #3d3932;
+
+  --color-ink: #f1ede4;
+  --color-ink-body: #cfc9bb;
+  --color-ink-muted: #b1aa9b;
+  --color-ink-faint: #9a9384;
+
+  --color-accent: #e0a93b;
+  --color-accent-hover: #edbe63;
+  --color-accent-deep: #c98f22;
+  --color-accent-shade: #2a1d0e;
+  --color-accent-ink: #11100e;
+  --color-focus: #e0a93b;
+
+  /* Compatibility: slate -> neutrals */
+  --color-slate-100: var(--color-ink);
+  --color-slate-200: #e4dfd3;
+  --color-slate-300: var(--color-ink-body);
+  --color-slate-400: var(--color-ink-muted);
+  --color-slate-500: #a39c8c;
+  --color-slate-600: var(--color-ink-faint);
+  --color-slate-700: var(--color-line);
+  --color-slate-800: var(--color-raised);
+  --color-slate-900: var(--color-surface);
+  --color-slate-950: var(--color-bg);
+
+  /* Compatibility: cyan -> accent */
+  --color-cyan-300: var(--color-accent-hover);
+  --color-cyan-400: var(--color-accent);
+  --color-cyan-500: var(--color-accent-deep);
+  --color-cyan-950: var(--color-accent-shade);
 }
 
 :root {
   --taskbar-h: 3.5rem;
-  font-family: Inter, system-ui, sans-serif;
-  color: #f8fafc;
-  background: #0b1120;
+  color: var(--color-ink);
+  background: var(--color-bg);
 }
 
 * {
@@ -20,7 +84,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: #0b1120;
+  background: var(--color-bg);
 }
 html {
   scroll-behavior: smooth;
@@ -160,7 +224,7 @@ section[id] {
     height: 44rem;
     background: radial-gradient(
       closest-side,
-      rgba(34, 211, 238, 0.16),
+      color-mix(in srgb, var(--color-accent) 8%, transparent),
       transparent
     );
     animation: drift-a 26s ease-in-out infinite alternate;
@@ -172,7 +236,7 @@ section[id] {
     height: 48rem;
     background: radial-gradient(
       closest-side,
-      rgba(99, 102, 241, 0.14),
+      rgba(241, 237, 228, 0.035),
       transparent
     );
     animation: drift-b 32s ease-in-out infinite alternate;
@@ -184,15 +248,15 @@ section[id] {
     height: 40rem;
     background: radial-gradient(
       closest-side,
-      rgba(14, 165, 233, 0.1),
+      color-mix(in srgb, var(--color-accent) 4%, transparent),
       transparent
     );
     animation: drift-a 36s ease-in-out infinite alternate-reverse;
   }
   .bg-grid {
     background-image:
-      linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
+      linear-gradient(rgba(207, 201, 187, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(207, 201, 187, 0.04) 1px, transparent 1px);
     background-size: 56px 56px;
     mask-image: radial-gradient(
       ellipse 80% 60% at 50% 0%,
@@ -211,7 +275,7 @@ section[id] {
     transition: opacity 0.3s;
     background: radial-gradient(
       340px circle at var(--mx, 50%) var(--my, 50%),
-      rgba(34, 211, 238, 0.12),
+      color-mix(in srgb, var(--color-accent) 9%, transparent),
       transparent 60%
     );
   }

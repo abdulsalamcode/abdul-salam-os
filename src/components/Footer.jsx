@@ -29,7 +29,7 @@ function Footer() {
               className="inline-flex items-center gap-3 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
             >
               <span
-                className="flex h-10 w-10 items-center justify-center rounded-lg border border-cyan-400/30 bg-slate-900 font-mono text-sm font-bold text-cyan-400 shadow-[0_0_18px_-6px_rgba(34,211,238,0.6)]"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-cyan-400/30 bg-slate-900 font-mono text-sm font-bold text-cyan-400 shadow-[0_0_18px_-6px_rgba(224,169,59,0.6)]"
                 aria-hidden="true"
               >
                 AS

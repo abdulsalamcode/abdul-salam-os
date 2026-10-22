@@ -88,7 +88,7 @@ function IntroScreen({ onReveal, onDone }) {
       role="dialog"
       aria-modal="true"
       aria-label="Loading Abdul Salam OS"
-      className={`fixed inset-0 z-[200] flex flex-col items-center justify-center bg-[#0b1120] px-6 transition duration-700 ease-[cubic-bezier(0.7,0,0.2,1)] ${
+      className={`fixed inset-0 z-[200] flex flex-col items-center justify-center bg-slate-950 px-6 transition duration-700 ease-[cubic-bezier(0.7,0,0.2,1)] ${
         leaving ? "-translate-y-full opacity-0" : ""
       }`}
     >
@@ -110,7 +110,7 @@ function IntroScreen({ onReveal, onDone }) {
             cy="50"
             r="46"
             fill="none"
-            stroke="rgba(148, 163, 184, 0.18)"
+            stroke="rgba(163, 156, 140, 0.18)"
             strokeWidth="2"
           />
           <circle
@@ -118,11 +118,11 @@ function IntroScreen({ onReveal, onDone }) {
             cy="50"
             r="46"
             fill="none"
-            stroke="#22d3ee"
+            stroke="currentColor"
             strokeWidth="2.5"
             strokeLinecap="round"
             pathLength="1"
-            className="intro-ring"
+            className="intro-ring text-cyan-400"
           />
         </svg>
 
@@ -160,7 +160,7 @@ function IntroScreen({ onReveal, onDone }) {
         className="mt-8 h-1 w-56 overflow-hidden rounded-full bg-slate-800"
         aria-hidden="true"
       >
-        <div className="intro-bar h-full rounded-full bg-gradient-to-r from-cyan-400 to-sky-500" />
+        <div className="intro-bar h-full rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300" />
       </div>
 
       <button

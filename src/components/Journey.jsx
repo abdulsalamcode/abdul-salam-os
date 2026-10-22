@@ -38,7 +38,7 @@ function Journey() {
           className="absolute bottom-0 left-6 top-0 w-px -translate-x-1/2 bg-slate-800"
           aria-hidden="true"
         >
-          <div className="timeline-fill h-full w-full bg-gradient-to-b from-cyan-400 via-sky-500 to-transparent" />
+          <div className="timeline-fill h-full w-full bg-gradient-to-b from-cyan-400 via-cyan-500 to-transparent" />
         </div>
 
         <ol className="space-y-6">
@@ -49,7 +49,7 @@ function Journey() {
               <li key={item.id} className="relative pl-16">
                 {/* Node */}
                 <span
-                  className={`absolute left-6 top-6 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border bg-[#0b1120] ${
+                  className={`absolute left-6 top-6 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border bg-slate-950 ${
                     isCurrent
                       ? "border-cyan-400 text-cyan-300"
                       : item.status === "next"

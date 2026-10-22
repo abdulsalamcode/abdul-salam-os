@@ -128,8 +128,8 @@ function Header() {
     <header
       className={`sticky top-0 z-40 border-b backdrop-blur-xl transition-colors duration-300 ${
         isScrolled || isMenuOpen
-          ? "border-slate-800 bg-[#0b1120]/95 shadow-lg shadow-black/20"
-          : "border-transparent bg-[#0b1120]/40"
+          ? "border-slate-800 bg-slate-950/95 shadow-lg shadow-black/20"
+          : "border-transparent bg-slate-950/40"
       }`}
     >
       <nav
@@ -143,7 +143,7 @@ function Header() {
           className="group flex min-w-0 items-center gap-3 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
         >
           <span
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-cyan-400/30 bg-slate-900 font-mono text-sm font-bold text-cyan-400 shadow-[0_0_18px_-6px_rgba(34,211,238,0.6)] transition group-hover:border-cyan-400/60"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-cyan-400/30 bg-slate-900 font-mono text-sm font-bold text-cyan-400 shadow-[0_0_18px_-6px_rgba(224,169,59,0.6)] transition group-hover:border-cyan-400/60"
             aria-hidden="true"
           >
             AS
@@ -278,7 +278,7 @@ function Header() {
       {/* Scroll progress */}
       <div
         ref={progressRef}
-        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500"
+        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500"
         style={{ transform: "scaleX(0)" }}
         aria-hidden="true"
       />

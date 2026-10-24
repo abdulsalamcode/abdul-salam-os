@@ -1,169 +1,97 @@
+import PROFILE from "../data/profile";
+
+const STACK = [
+  "React",
+  "JavaScript",
+  "PHP",
+  "Laravel",
+  "MySQL",
+  "Tailwind CSS",
+];
+
 function Hero() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-20 lg:py-24">
-      <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+    <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-16 lg:py-20">
+      <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
+        {/* Text: comes first on every screen size */}
+        <div className="min-w-0">
+          <div className="hero-item" style={{ "--d": "0ms" }}>
+            <p className="text-sm font-medium text-cyan-400">
+              Computer Science Graduate · Pakistan
+            </p>
 
-        {/* Left Side */}
-        <div>
-          {/* Availability */}
-          <div
-            className="hero-item mb-6 flex items-center gap-2 text-sm text-emerald-400"
-            style={{ "--d": "0ms" }}
-          >
-            <span className="relative flex h-2 w-2" aria-hidden="true">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400/60 motion-safe:animate-ping" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-            </span>
+            <h1 className="mt-4 max-w-2xl text-3xl font-bold leading-tight tracking-tight text-slate-100 sm:text-4xl lg:text-5xl">
+              I build full-stack web apps with React, PHP and MySQL.
+            </h1>
 
-            <span>Available for Internship</span>
+            <p className="mt-5 max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+              I&apos;m a BSCS graduate seeking my first web development
+              internship. I&apos;ve built a university management system and a
+              Laravel-based review platform, and I continue to strengthen my
+              full-stack skills through hands-on projects.
+            </p>
           </div>
 
-          {/* Eyebrow */}
-          <p
-            className="hero-item mb-4 text-sm font-medium tracking-[0.25em] text-cyan-400"
-            style={{ "--d": "90ms" }}
-          >
-            BUILDING DIGITAL PRODUCTS
-          </p>
+          <div className="hero-item" style={{ "--d": "120ms" }}>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#work"
+                className="inline-flex min-h-12 items-center justify-center rounded-sm bg-cyan-400 px-6 py-3 text-center text-base font-semibold text-slate-950 transition-colors hover:bg-cyan-300 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              >
+                View Projects
+              </a>
 
-          {/* Name */}
-          <h1
-            className="hero-item max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl"
-            style={{ "--d": "180ms" }}
-          >
-            Abdul Salam
-          </h1>
+              <a
+                href={PROFILE.resume}
+                download={PROFILE.resumeFileName}
+                aria-label="Download resume (PDF)"
+                className="inline-flex min-h-12 items-center justify-center rounded-sm border border-slate-600 px-6 py-3 text-center text-base font-semibold text-slate-100 transition-colors hover:border-cyan-400 hover:text-cyan-300 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              >
+                Resume
+              </a>
+            </div>
 
-          {/* Role */}
-          <p
-            className="hero-item mt-4 text-xl font-medium text-slate-300 sm:mt-5 sm:text-3xl"
-            style={{ "--d": "270ms" }}
-          >
-            Full-Stack Web Developer
-          </p>
-
-          {/* Description */}
-          <p
-            className="hero-item mt-6 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg"
-            style={{ "--d": "360ms" }}
-          >
-            I build modern web applications and digital
-            experiences using React, Laravel, MySQL and
-            AI-assisted development.
-          </p>
-
-          {/* Tech Line */}
-          <div
-            className="hero-item mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-slate-500"
-            style={{ "--d": "450ms" }}
-          >
-            <span>React</span>
-            <span aria-hidden="true">•</span>
-            <span>JavaScript</span>
-            <span aria-hidden="true">•</span>
-            <span>Laravel</span>
-            <span aria-hidden="true">•</span>
-            <span>MySQL</span>
-          </div>
-
-          {/* Actions */}
-          <div
-            className="hero-item mt-8 flex flex-col gap-3 sm:flex-row"
-            style={{ "--d": "540ms" }}
-          >
-            <a
-              href="#work"
-              className="rounded-lg bg-cyan-400 px-5 py-3 text-center font-medium text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            <ul
+              aria-label="Technologies"
+              className="mt-8 flex flex-wrap gap-x-2 gap-y-1 text-sm text-slate-400"
             >
-              Explore Work
-            </a>
+              {STACK.map((tech, index) => (
+                <li key={tech}>
+                  {tech}
+                  {index < STACK.length - 1 && (
+                    <span aria-hidden="true"> ·</span>
+                  )}
+                </li>
+              ))}
+            </ul>
 
-            <a
-              href="/resume.pdf"
-              download="Abdul-Salam-Resume.pdf"
-              className="rounded-lg border border-slate-700 px-5 py-3 text-center font-medium text-slate-200 transition hover:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-500"
-            >
-              Download CV
-            </a>
+            <p className="mt-6 max-w-xl text-sm leading-6 text-slate-400">
+              This site also has a built-in desktop. Use the taskbar at the
+              bottom to open apps.
+            </p>
           </div>
         </div>
 
-        {/* Right Side - Profile */}
-        <div
-          className="hero-item relative mx-auto w-full max-w-md lg:ml-auto"
-          style={{ "--d": "320ms" }}
+        {/* Portrait: plain framed photo, no decoration */}
+        <figure
+          className="hero-item mx-auto w-full max-w-[16rem] sm:max-w-xs lg:ml-auto lg:mr-0 lg:max-w-sm"
+          style={{ "--d": "240ms" }}
         >
-
-          {/* Subtle Glow */}
-          <div
-            className="absolute -inset-4 rounded-3xl bg-cyan-400/10 blur-2xl motion-safe:animate-pulse"
-            aria-hidden="true"
-          ></div>
-
-          {/* Profile Card */}
-          <div className="float-slow relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/70 shadow-2xl">
-
-            {/* Card Top Bar */}
-            <div className="flex items-center justify-between border-b border-slate-800 px-4 py-3">
-              <div className="flex items-center gap-2">
-                <span
-                  className="h-2.5 w-2.5 rounded-full bg-red-400"
-                  aria-hidden="true"
-                ></span>
-
-                <span
-                  className="h-2.5 w-2.5 rounded-full bg-yellow-400"
-                  aria-hidden="true"
-                ></span>
-
-                <span
-                  className="h-2.5 w-2.5 rounded-full bg-emerald-400"
-                  aria-hidden="true"
-                ></span>
-              </div>
-
-              <p className="font-mono text-xs text-slate-600">
-                abdul-salam.profile
-              </p>
-            </div>
-
-            {/* Photo */}
-            <div className="bg-slate-950 p-3">
-              <img
-                src="/abdul-salam.png"
-                alt="Abdul Salam - Full-Stack Web Developer"
-                width="720"
-                height="900"
-                fetchPriority="high"
-                decoding="async"
-                className="aspect-[4/5] w-full rounded-xl object-cover object-top"
-              />
-            </div>
-
-            {/* Card Footer */}
-            <div className="border-t border-slate-800 px-5 py-4">
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <p className="text-sm font-medium text-slate-200">
-                    Abdul Salam
-                  </p>
-
-                  <p className="mt-1 text-xs text-slate-500">
-                    Full-Stack Web Developer
-                  </p>
-                </div>
-
-                <div className="rounded-md border border-emerald-500/20 bg-emerald-500/5 px-2.5 py-1.5">
-                  <p className="text-xs text-emerald-400">
-                    Available
-                  </p>
-                </div>
-              </div>
-            </div>
-
+          <div className="rounded-sm border border-slate-700 bg-slate-900 p-2">
+            <img
+              src="/abdul-salam.png"
+              alt="Abdul Salam - Full-Stack Web Developer"
+              width="720"
+              height="900"
+              fetchPriority="high"
+              decoding="async"
+              className="aspect-[4/5] w-full rounded-sm object-cover object-top"
+            />
           </div>
-        </div>
-
+          <figcaption className="mt-2 text-sm text-slate-400">
+            Abdul Salam
+          </figcaption>
+        </figure>
       </div>
     </section>
   );

@@ -1,7 +1,6 @@
 import { useState } from "react";
-import ProjectCard from "./ProjectCard";
+import ProjectRow from "./ProjectRow";
 import ProjectCaseStudyWindow from "./ProjectCaseStudyWindow";
-import Reveal from "./ui/Reveal";
 import SectionHeading from "./ui/SectionHeading";
 import projects from "../data/projects";
 
@@ -22,20 +21,16 @@ function Projects() {
           description="A selection of projects that demonstrate my development skills, problem-solving and continuous learning."
         />
 
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:mt-10 md:grid-cols-2">
+        <ol className="mt-8 sm:mt-10">
           {projects.map((project, index) => (
-            <Reveal
+            <ProjectRow
               key={project.id}
-              delay={(index % 2) * 100}
-              className="h-full"
-            >
-              <ProjectCard
-                project={project}
-                onOpen={setSelectedProject}
-              />
-            </Reveal>
+              project={project}
+              index={index}
+              onOpen={setSelectedProject}
+            />
           ))}
-        </div>
+        </ol>
       </section>
 
       {selectedProject && (

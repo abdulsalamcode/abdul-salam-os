@@ -1,32 +1,88 @@
-const cardClass =
-  "block w-full rounded-xl border border-slate-800 bg-slate-900/50 p-5 text-left transition hover:border-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 sm:p-6";
+import AppIcon from "./desktop/AppIcon";
 
-function CardContent({ title, description }) {
+const rowClass =
+  "group flex min-h-16 w-full items-start gap-4 py-5 text-left transition-colors motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cyan-400";
+
+function CardContent({
+  title,
+  description,
+  icon,
+  badge,
+  isHighlighted,
+  isMinimized,
+}) {
   return (
     <>
-      <span className="block font-semibold text-slate-100">
-        {title}
-      </span>
+      {icon && (
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-slate-700 text-cyan-400 transition-colors group-hover:border-cyan-400 motion-reduce:transition-none">
+          <AppIcon app={{ icon }} className="h-5 w-5" />
+        </span>
+      )}
 
-      <span className="mt-2 block text-sm text-slate-400">
-        {description}
+      <span className="min-w-0 flex-1">
+        <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span className="font-semibold text-slate-100 transition-colors group-hover:text-cyan-300 motion-reduce:transition-none">
+            {title}
+          </span>
+
+          {badge && (
+            <span
+              className={`text-xs font-medium ${
+                isHighlighted ? "text-cyan-400" : "text-slate-400"
+              }`}
+            >
+              {badge}
+            </span>
+          )}
+
+          {isMinimized && (
+            <span className="text-xs text-slate-400">Minimized</span>
+          )}
+        </span>
+
+        <span className="mt-1 block text-sm leading-6 text-slate-400">
+          {description}
+        </span>
       </span>
     </>
   );
 }
 
-function WorkspaceCard({ title, description, href, onClick }) {
+// One app in the Workspace launcher. Renders a button (opens a window) or,
+// when `href` is given, a link.
+function WorkspaceCard({
+  id,
+  title,
+  description,
+  href,
+  onClick,
+  icon,
+  badge,
+  isHighlighted = false,
+  isMinimized = false,
+}) {
+  const content = (
+    <CardContent
+      title={title}
+      description={description}
+      icon={icon}
+      badge={badge}
+      isHighlighted={isHighlighted}
+      isMinimized={isMinimized}
+    />
+  );
+
   if (href) {
     return (
-      <a href={href} className={cardClass}>
-        <CardContent title={title} description={description} />
+      <a id={id} href={href} className={rowClass}>
+        {content}
       </a>
     );
   }
 
   return (
-    <button type="button" onClick={onClick} className={cardClass}>
-      <CardContent title={title} description={description} />
+    <button id={id} type="button" onClick={onClick} className={rowClass}>
+      {content}
     </button>
   );
 }

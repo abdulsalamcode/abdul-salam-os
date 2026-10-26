@@ -2,8 +2,10 @@ import { isLive } from "../data/contacts";
 import Icon from "./ui/Icon";
 import SpotlightCard from "./ui/SpotlightCard";
 
-// One contact card. Cards without a link yet show "Coming soon".
-function ContactCard({ contact }) {
+// One contact entry. Entries without a link yet show "Coming soon".
+// variant "card" (default): the spotlight card used by the Contact window.
+// variant "row" / "row-quiet": plain editorial row used by the Contact section.
+function ContactCard({ contact, variant = "card" }) {
   const live = isLive(contact);
   const external = live && contact.href.startsWith("http");
 
@@ -15,6 +17,54 @@ function ContactCard({ contact }) {
           : {}),
       }
     : {};
+
+  if (variant !== "card") {
+    const quiet = variant === "row-quiet";
+    const rowClass = `grid gap-1 sm:grid-cols-[8rem_minmax(0,1fr)] sm:gap-6 ${
+      quiet ? "py-3" : "py-5"
+    }`;
+
+    const content = (
+      <>
+        <span className="text-sm text-slate-400">{contact.label}</span>
+
+        <span className="min-w-0">
+          <span
+            className={`block break-words font-medium ${
+              live
+                ? `${
+                    quiet ? "text-base text-slate-200" : "text-lg text-slate-100"
+                  } transition-colors group-hover:text-cyan-300 motion-reduce:transition-none`
+                : "text-base text-slate-400"
+            }`}
+          >
+            {live ? contact.display : "Coming soon"}
+          </span>
+
+          {live && contact.hint && (
+            <span className="mt-0.5 block text-sm text-slate-400">
+              {contact.hint}
+            </span>
+          )}
+        </span>
+
+        {external && <span className="sr-only">(opens in a new tab)</span>}
+      </>
+    );
+
+    if (!live) {
+      return <div className={rowClass}>{content}</div>;
+    }
+
+    return (
+      <a
+        {...linkProps}
+        className={`group ${rowClass} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-400`}
+      >
+        {content}
+      </a>
+    );
+  }
 
   return (
     <SpotlightCard

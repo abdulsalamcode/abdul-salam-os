@@ -22,10 +22,10 @@ export const BUILD_STEPS = [
   },
   {
     id: "test",
-    title: "Test & Improve",
+    title: "Check & Improve",
     icon: "check-circle",
     description:
-      "Test the product, fix issues and continuously improve it.",
+      "Check that it works as intended, fix what I find and improve it.",
   },
 ];
 

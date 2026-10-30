@@ -159,7 +159,7 @@ function Taskbar() {
               {/* Profile */}
               <div className="flex items-center gap-3 border-b border-slate-800 p-4">
                 <img
-                  src="/abdul-salam.webp"
+                  src="/abdul-salam.png"
                   alt=""
                   width="40"
                   height="40"

@@ -1,69 +1,56 @@
 import { CONTACTS, isLive } from "../data/contacts";
-import Icon from "./ui/Icon";
+
+const YEAR = new Date().getFullYear();
 
 const NAV_LINKS = [
-  { label: "Work", href: "#work" },
-  { label: "Stack", href: "#stack" },
+  { label: "Projects", href: "#work" },
+  { label: "Tech Stack", href: "#stack" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
-const YEAR = new Date().getFullYear();
+// Only these three are shown here; the Contact section lists everything.
+const CONNECT_IDS = ["email", "linkedin", "github"];
+const CONNECT = CONNECT_IDS.map((id) =>
+  CONTACTS.find((contact) => contact.id === id)
+).filter((contact) => contact && isLive(contact));
+
+const LINK =
+  "inline-block rounded-sm py-1 text-slate-300 transition-colors hover:text-cyan-300 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400";
 
 function Footer() {
-  const socials = CONTACTS.filter(isLive);
-
   return (
-    <footer className="relative mt-8 border-t border-slate-800 bg-slate-950/40">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"
-        aria-hidden="true"
-      />
-
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
-          {/* Brand */}
-          <div>
+    <footer className="border-t border-slate-700">
+      {/* The page wrapper in App.jsx already reserves the taskbar height */}
+      <div className="mx-auto max-w-7xl px-4 pb-8 pt-12 sm:px-6 sm:pt-16">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="min-w-0 lg:col-span-6">
             <a
               href="#top"
-              className="inline-flex items-center gap-3 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="inline-block rounded-sm text-xl font-semibold text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
             >
-              <span
-                className="flex h-10 w-10 items-center justify-center rounded-lg border border-cyan-400/30 bg-slate-900 font-mono text-sm font-bold text-cyan-400 shadow-[0_0_18px_-6px_rgba(224,169,59,0.6)]"
-                aria-hidden="true"
-              >
-                AS
-              </span>
-
-              <span>
-                <span className="block font-semibold text-white">
-                  Abdul Salam
-                </span>
-                <span className="block text-xs text-slate-400">
-                  Full-Stack Web Developer
-                </span>
-              </span>
+              Abdul Salam
             </a>
-
-            <p className="mt-4 max-w-sm text-sm leading-6 text-slate-400">
-              Building modern web applications with React, Laravel
-              and MySQL, and always learning to build them better.
+            <p className="mt-1 text-sm font-medium text-cyan-400">
+              Full-Stack Web Developer
+            </p>
+            <p className="mt-4 max-w-md text-base leading-7 text-slate-300">
+              Building web applications and continuing to improve as a
+              developer.
             </p>
           </div>
 
-          {/* Navigate */}
-          <nav aria-label="Footer">
-            <h2 className="font-mono text-xs uppercase tracking-wider text-slate-400">
+          <nav aria-labelledby="footer-navigate" className="lg:col-span-3">
+            <h2
+              id="footer-navigate"
+              className="text-sm font-semibold text-slate-100"
+            >
               Navigate
             </h2>
-
-            <ul className="mt-4 space-y-2">
+            <ul role="list" className="mt-3 space-y-1">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-slate-300 transition hover:text-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-                  >
+                  <a href={link.href} className={LINK}>
                     {link.label}
                   </a>
                 </li>
@@ -71,52 +58,36 @@ function Footer() {
             </ul>
           </nav>
 
-          {/* Connect */}
-          <div>
-            <h2 className="font-mono text-xs uppercase tracking-wider text-slate-400">
-              Connect
-            </h2>
-
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {socials.map((contact) => (
-                <li key={contact.id}>
-                  <a
-                    href={contact.href}
-                    aria-label={contact.label}
-                    title={contact.label}
-                    {...(contact.href.startsWith("http")
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-800 text-slate-300 transition hover:-translate-y-0.5 hover:border-cyan-400/50 hover:text-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-                  >
-                    <Icon name={contact.icon} className="h-5 w-5" />
-                  </a>
-                </li>
-              ))}
+          <div className="lg:col-span-3">
+            <h2 className="text-sm font-semibold text-slate-100">Connect</h2>
+            <ul role="list" className="mt-3 space-y-1">
+              {CONNECT.map((contact) => {
+                const external = contact.href.startsWith("http");
+                return (
+                  <li key={contact.id}>
+                    <a
+                      href={contact.href}
+                      {...(external
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      className={LINK}
+                    >
+                      {contact.label}
+                      {external && (
+                        <span className="sr-only"> (opens in a new tab)</span>
+                      )}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-10 flex flex-col gap-4 border-t border-slate-800 pt-6 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-slate-700 pt-6 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <p>© {YEAR} Abdul Salam</p>
-
-          <p className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2" aria-hidden="true">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400/60 motion-safe:animate-ping" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-            </span>
-            System Status: Online
-          </p>
-
-          <p>Built with React + Tailwind CSS</p>
-
-          <a
-            href="#top"
-            className="inline-flex w-fit items-center gap-2 rounded-lg border border-slate-800 px-3 py-1.5 text-slate-300 transition hover:border-cyan-400/50 hover:text-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-          >
+          <a href="#top" className={`${LINK} w-fit`}>
             Back to top
-            <Icon name="arrow-up" className="h-4 w-4" />
           </a>
         </div>
       </div>

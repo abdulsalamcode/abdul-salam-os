@@ -4,9 +4,10 @@ import Reveal from "./ui/Reveal";
 import SectionHeading from "./ui/SectionHeading";
 
 const FOCUS = [
-  "Full-stack web apps",
-  "Clean, responsive interfaces",
-  "AI-assisted workflow",
+  "Full-stack web development",
+  "Responsive UI engineering",
+  "Backend integration",
+  "Database-driven applications",
 ];
 
 // Counts come from the real data, so they can never drift from the site.
@@ -16,7 +17,7 @@ const FACTS = [
   { label: "Degree", value: "BS Computer Science" },
   {
     label: "Availability",
-    value: "Open to internships",
+    value: "Open to Web Development Opportunities",
     className: "text-cyan-400",
   },
 ];
@@ -32,7 +33,7 @@ function About() {
         <div className="min-w-0 lg:col-span-7">
           <SectionHeading
             eyebrow="ABOUT"
-            title="Building, Learning, Improving"
+            title="Building Practical Web Solutions"
           />
 
           <Reveal>
@@ -40,13 +41,23 @@ function About() {
               <p>
                 I&apos;m{" "}
                 <span className="font-medium text-slate-100">Abdul Salam</span>
-                , a Computer Science graduate focused on building modern web
-                applications and improving my full-stack development skills.
+                , a Computer Science graduate with two years of hands-on
+                development experience through independent and collaborative
+                work. I focus on developing modern web applications, creating
+                responsive interfaces, and building functional backend systems.
               </p>
 
               <p>
-                My current development stack includes React, JavaScript,
-                Tailwind CSS, PHP, Laravel, MySQL and REST APIs.
+                My development work spans React, JavaScript, Tailwind CSS, PHP,
+                Laravel, MySQL and REST APIs, with experience in application
+                authentication, role-based access control, database management
+                and frontend-backend integration.
+              </p>
+
+              <p>
+                I approach development with a problem-solving mindset, an
+                emphasis on clean and maintainable code, and a commitment to
+                understanding the technologies behind what I build.
               </p>
             </div>
 

@@ -21,14 +21,13 @@ function Hero() {
             </p>
 
             <h1 className="mt-4 max-w-2xl text-3xl font-bold leading-tight tracking-tight text-slate-100 sm:text-4xl lg:text-5xl">
-              I build full-stack web apps with React, PHP and MySQL.
+              I build full-stack web applications with React, PHP, Laravel and MySQL.
             </h1>
 
             <p className="mt-5 max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
-              I&apos;m a BSCS graduate seeking my first web development
-              internship. I&apos;ve built a university management system and a
-              Laravel-based review platform, and I continue to strengthen my
-              full-stack skills through hands-on projects.
+              I'm a Computer Science graduate with two years of hands-on experience developing web applications through independent and collaborative work. I focus on creating responsive user interfaces, developing application functionality, integrating REST APIs, implementing authentication and role-based access control, and working with relational databases.
+
+              My development experience spans the frontend and backend, with a particular focus on React and JavaScript, alongside PHP, Laravel and MySQL. Backed by professional training in Advanced Web Application Development, I bring a practical, problem-solving approach to building functional, maintainable and user-focused web solutions.
             </p>
           </div>
 

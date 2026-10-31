@@ -2,30 +2,31 @@
 export const BUILD_STEPS = [
   {
     id: "understand",
-    title: "Understand",
+    title: "Understand the Problem",
     icon: "search",
-    description: "Understand the requirements and define the problem.",
+    description:
+      "Analyze the requirements, identify the core problem, understand user needs and define the functionality the application should deliver.",
   },
   {
     id: "plan",
-    title: "Plan",
+    title: "Plan the Solution",
     icon: "compass",
     description:
-      "Plan the UI, components, data flow and application structure.",
+      "Determine the application structure, choose suitable technologies, organize components, plan data flow and outline the database design.",
   },
   {
     id: "build",
-    title: "Build",
+    title: "Develop & Integrate",
     icon: "code",
     description:
-      "Build the interface, APIs, database and required functionality.",
+      "Build responsive user interfaces, implement application functionality, develop backend logic, integrate APIs and connect database operations.",
   },
   {
     id: "test",
-    title: "Check & Improve",
+    title: "Test & Refine",
     icon: "check-circle",
     description:
-      "Check that it works as intended, fix what I find and improve it.",
+      "Test features and user interactions, identify bugs, troubleshoot issues, improve performance where needed and refine the application for a better user experience.",
   },
 ];
 

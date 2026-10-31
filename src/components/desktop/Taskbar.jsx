@@ -177,7 +177,7 @@ function Taskbar() {
                       className="h-1.5 w-1.5 rounded-full bg-emerald-400"
                       aria-hidden="true"
                     />
-                    Open to internships
+                    
                   </p>
                 </div>
               </div>
@@ -337,7 +337,7 @@ function Taskbar() {
               <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400/60 motion-safe:animate-ping" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
             </span>
-            Open to internships
+            Ready to Build & Collaborate
           </div>
 
           <time

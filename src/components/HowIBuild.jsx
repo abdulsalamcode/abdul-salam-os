@@ -10,8 +10,8 @@ function HowIBuild() {
     >
       <SectionHeading
         eyebrow="HOW I BUILD"
-        title="How I approach a project"
-        description="I start by understanding the problem, then plan, build and check my work before improving it."
+        title="How I Approach a Project"
+        description="I follow a structured development process that helps me turn requirements into functional, maintainable web applications. From understanding the problem to testing the final implementation, each step has a clear purpose."
       />
 
       {/* role="list": Tailwind removes list markers, and Safari then drops list semantics */}
